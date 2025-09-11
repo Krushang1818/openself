@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { ResumeStorageDataSchemaType } from "./resume";
+import { ResumeStorageDataSchemaType } from "@/lib/resume";
 
 interface ResumeStore {
   resumeData: ResumeStorageDataSchemaType | null;

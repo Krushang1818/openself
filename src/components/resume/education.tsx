@@ -1,5 +1,11 @@
+import { z } from "zod";
 import { Section } from "@/components/ui/section";
-import { ResumeDataSchemaType, getYear } from "@/lib/resume";
+import {
+  EducationSectionSchema,
+  ResumeDataSchemaType,
+  getYear,
+} from "@/lib/resume";
+import { withInteractable } from "@tambo-ai/react";
 import { useMemo } from "react";
 
 /**
@@ -87,3 +93,11 @@ export function Education({
     </Section>
   );
 }
+
+export const InteractableEducation = withInteractable(Education, {
+  componentName: "Education",
+  description: "Education section with a list of educational experiences",
+  propsSchema: z.object({
+    education: EducationSectionSchema,
+  }),
+});

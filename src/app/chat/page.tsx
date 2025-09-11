@@ -1,21 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { MessageThreadFull } from "@/components/tambo/message-thread-full";
 import { useMcpServers } from "@/components/tambo/mcp-config-modal";
 import { components, tools } from "@/lib/tambo";
 import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { InteractableFullResume } from "@/components/resume/full-resume";
+import { FullResume } from "@/components/resume/full-resume";
 import { useResumeStore } from "@/store/resume-store";
 
 export default function ChatPage() {
   // Load MCP server configurations
   const mcpServers = useMcpServers();
   const { resumeData } = useResumeStore();
-
-  const [isChatOpen, setIsChatOpen] = useState(true);
 
   return (
     <TamboProvider
@@ -45,7 +41,7 @@ export default function ChatPage() {
               </div> */}
 
             <div className="p-4">
-              <InteractableFullResume resume={resumeData} />
+              <FullResume resume={resumeData} />
             </div>
           </div>
         </main>

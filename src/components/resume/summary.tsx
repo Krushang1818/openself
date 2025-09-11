@@ -1,7 +1,9 @@
-import { ResumeDataSchemaType } from "@/lib/resume";
+import { z } from "zod";
+import { ResumeDataSchemaType, SummarySectionSchema } from "@/lib/resume";
 import { Section } from "../ui/section";
+import { withInteractable } from "@tambo-ai/react";
 
-interface AboutProps {
+interface SummaryProps {
   summary: ResumeDataSchemaType["summary"];
   className?: string;
 }
@@ -10,7 +12,11 @@ interface AboutProps {
  * Summary section component
  * Displays a summary of professional experience and goals
  */
-export function Summary({ summary, className }: AboutProps) {
+export function Summary({ summary, className }: SummaryProps) {
+  if (!summary) {
+    return null;
+  }
+
   return (
     <Section className={className}>
       <h2 className="text-xl font-bold" id="about-section">
@@ -25,3 +31,12 @@ export function Summary({ summary, className }: AboutProps) {
     </Section>
   );
 }
+
+export const InteractableSummary = withInteractable(Summary, {
+  componentName: "About",
+  description:
+    "About section with summary of professional experience and goals",
+  propsSchema: z.object({
+    summary: SummarySectionSchema,
+  }),
+});

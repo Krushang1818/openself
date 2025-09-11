@@ -1,55 +1,29 @@
-"use client";
-
-import { Project } from "@/lib/resume";
-import { ExternalLink, Code, Github, GitBranch } from "lucide-react";
+import { z } from "zod";
+import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
+import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { withInteractable } from "@tambo-ai/react";
 
 interface ProjectsProps {
-  projects: Project[];
+  projects: ResumeDataSchemaType["projects"];
+  className?: string;
 }
 
-const getPlatformIcon = (platform?: string) => {
-  switch (platform) {
-    case "github":
-      return Github;
-    case "gitlab":
-      return GitBranch;
-    case "bitbucket":
-      return Code; // Using Code as fallback for Bitbucket
-    default:
-      return Code;
+export function Projects({ projects, className }: ProjectsProps) {
+  if (projects.length === 0) {
+    return null;
   }
-};
-
-const getPlatformColor = (platform?: string) => {
-  switch (platform) {
-    case "github":
-      return "text-neutral-700 hover:text-neutral-900";
-    case "gitlab":
-      return "text-orange-600 hover:text-orange-800";
-    case "bitbucket":
-      return "text-blue-600 hover:text-blue-800";
-    default:
-      return "text-neutral-600 hover:text-neutral-800";
-  }
-};
-
-export function Projects({ projects }: ProjectsProps) {
-  if (projects.length === 0) return null;
 
   return (
-    <Section>
+    <Section className={className}>
       <h2 className="text-xl font-bold" id="projects-section">
         Projects
       </h2>
       <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project) => {
-          const PlatformIcon = getPlatformIcon(project.platform);
-          const platformColor = getPlatformColor(project.platform);
-
+        {projects.map((project, idx) => {
           return (
             <div
-              key={project.id}
+              key={idx}
               className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start justify-between mb-3">
@@ -62,10 +36,9 @@ export function Projects({ projects }: ProjectsProps) {
                       href={project.deployedUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
                       title="View deployed project"
                     >
-                      <ExternalLink size={18} />
+                      <ExternalLinkIcon className="size-4" />
                     </a>
                   )}
                   {project.publicCodeUrl && (
@@ -73,10 +46,8 @@ export function Projects({ projects }: ProjectsProps) {
                       href={project.publicCodeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${platformColor} transition-colors`}
-                      title={`View code on ${project.platform || "platform"}`}
                     >
-                      <PlatformIcon size={18} />
+                      <GitBranchIcon className="size-4" />
                     </a>
                   )}
                 </div>
@@ -107,3 +78,11 @@ export function Projects({ projects }: ProjectsProps) {
     </Section>
   );
 }
+
+export const InteractableProjects = withInteractable(Projects, {
+  componentName: "Projects",
+  description: "Projects section with a list of projects",
+  propsSchema: z.object({
+    projects: z.array(ProjectSectionSchema),
+  }),
+});
