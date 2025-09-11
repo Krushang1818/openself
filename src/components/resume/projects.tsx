@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
+import { ResumeDataSchemaType } from "@/lib/resume";
 import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { withInteractable } from "@tambo-ai/react";
