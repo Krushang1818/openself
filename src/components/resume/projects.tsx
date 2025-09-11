@@ -24,13 +24,13 @@ const getPlatformIcon = (platform?: string) => {
 const getPlatformColor = (platform?: string) => {
   switch (platform) {
     case "github":
-      return "text-gray-700 hover:text-gray-900";
+      return "text-neutral-700 hover:text-neutral-900";
     case "gitlab":
       return "text-orange-600 hover:text-orange-800";
     case "bitbucket":
       return "text-blue-600 hover:text-blue-800";
     default:
-      return "text-gray-600 hover:text-gray-800";
+      return "text-neutral-600 hover:text-neutral-800";
   }
 };
 
@@ -53,7 +53,7 @@ export function Projects({ projects }: ProjectsProps) {
               className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-semibold text-gray-900">
+                <h3 className="text-xl font-semibold text-neutral-900">
                   {project.name}
                 </h3>
                 <div className="flex gap-2">
@@ -83,7 +83,7 @@ export function Projects({ projects }: ProjectsProps) {
               </div>
 
               {project.description && (
-                <p className="text-gray-700 mb-4 leading-relaxed">
+                <p className="text-neutral-700 mb-4 leading-relaxed">
                   {project.description}
                 </p>
               )}
@@ -93,7 +93,7 @@ export function Projects({ projects }: ProjectsProps) {
                   {project.techStack.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium"
+                      className="px-2 py-1 bg-gray-100 text-neutral-700 rounded text-xs font-medium"
                     >
                       {tech}
                     </span>

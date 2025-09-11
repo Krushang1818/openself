@@ -92,7 +92,7 @@ export function ResumeDropzone({
           className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full z-10"
           disabled={isLoading}
         >
-          <XIcon className="h-4 w-4 text-gray-500" />
+          <XIcon className="h-4 w-4 text-neutral-500" />
         </button>
       )}
 

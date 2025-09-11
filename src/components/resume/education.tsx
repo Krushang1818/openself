@@ -29,7 +29,7 @@ function EducationItem({
             {school}
           </h3>
           <div
-            className="text-sm tabular-nums text-gray-500"
+            className="text-sm tabular-nums text-neutral-500"
             aria-label={`Period: ${getYear(start)} to ${
               end ? ` ${getYear(end)}` : "Present"
             }`}

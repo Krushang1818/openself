@@ -315,12 +315,12 @@ const ThreadHistorySearch = React.forwardRef<
           className="p-1 hover:bg-backdrop rounded-md cursor-pointer transition-colors"
           title="Search threads"
         >
-          <SearchIcon className="h-4 w-4 text-gray-400" />
+          <SearchIcon className="h-4 w-4 text-neutral-400" />
         </button>
       ) : (
         <>
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <SearchIcon className="h-4 w-4 text-gray-400" />
+            <SearchIcon className="h-4 w-4 text-neutral-400" />
           </div>
           <input
             ref={searchInputRef}

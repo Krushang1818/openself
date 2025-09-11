@@ -55,7 +55,7 @@ export default function ImportPage() {
       <div className="mx-auto w-full max-w-3xl rounded-md border px-10 py-10 text-center shadow-md">
         {!resumeData ? (
           <>
-            <h1 className="text-lg font-semibold text-gray-900">
+            <h1 className="text-lg font-semibold text-neutral-900">
               Import data from an existing resume
             </h1>
             <ResumeDropzone
@@ -83,7 +83,7 @@ export default function ImportPage() {
                 <OrDivider />
               </>
             )}
-            <h1 className="font-semibold text-gray-900">
+            <h1 className="font-semibold text-neutral-900">
               Override data with a new resume
             </h1>
             <ResumeDropzone
