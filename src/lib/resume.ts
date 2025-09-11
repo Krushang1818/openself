@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-const MetadataSchema = z.object({
+export const MetadataSchema = z.object({
   name: z.string().describe("Name of the resume"),
   size: z.string().describe("Size for the resume"),
 });
 
-const HeaderContactsSchema = z.object({
+export const HeaderContactsSchema = z.object({
   website: z.string().describe("Personal website or portfolio URL").optional(),
   email: z.string().describe("Email address").optional(),
   phone: z.string().describe("Phone number").optional(),
@@ -14,22 +14,21 @@ const HeaderContactsSchema = z.object({
   github: z.string().describe("GitHub username").optional(),
 });
 
-const HeaderSection = z.object({
+export const HeaderSectionSchema = z.object({
   name: z.string(),
-  shortAbout: z.string().describe("Short description of your profile"),
+  bio: z.string().describe("Short bio of your profile"),
   location: z
     .string()
     .describe("Location with format 'City, Country'")
     .optional(),
   contacts: HeaderContactsSchema,
-  skills: z
-    .array(z.string())
-    .describe("Skills used within the different jobs the user has had."),
 });
 
-const SummarySection = z.string().describe("Summary of your profile");
+export const SummarySectionSchema = z
+  .string()
+  .describe("Summary of your profile");
 
-const WorkExperienceSection = z.array(
+export const WorkExperienceSectionSchema = z.array(
   z.object({
     company: z.string().describe("Company name"),
     link: z.string().describe("Company website URL"),
@@ -52,7 +51,17 @@ const WorkExperienceSection = z.array(
   }),
 );
 
-const EducationSection = z.array(
+export const ProjectSectionSchema = z.array(
+  z.object({
+    name: z.string().describe("Project name"),
+    deployedUrl: z.string().describe("Deployed project URL"),
+    publicCodeUrl: z.string().describe("Public code repository URL"),
+    description: z.string().describe("Project description"),
+    techStack: z.array(z.string()).describe("Tech stack used in the project"),
+  }),
+);
+
+export const EducationSectionSchema = z.array(
   z.object({
     school: z.string().describe("School or university name"),
     degree: z.string().describe("Degree or certification obtained"),
@@ -61,11 +70,18 @@ const EducationSection = z.array(
   }),
 );
 
+export const SkillsSectionSchema = z
+  .array(z.string())
+  .describe("Skills used within the different jobs the user has had.");
+
 export const ResumeDataSchema = z.object({
-  header: HeaderSection,
-  summary: SummarySection,
-  workExperience: WorkExperienceSection,
-  education: EducationSection,
+  header: HeaderSectionSchema,
+  summary: SummarySectionSchema,
+  projects: ProjectSectionSchema,
+  workExperience: WorkExperienceSectionSchema,
+  education: EducationSectionSchema,
+  skills: SkillsSectionSchema,
+  picture: z.string().optional().describe("URL of the profile picture"),
 });
 
 export type ResumeDataSchemaType = z.infer<typeof ResumeDataSchema>;

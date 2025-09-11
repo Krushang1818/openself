@@ -1,15 +1,9 @@
-import {
-  GlobeIcon,
-  MailIcon,
-  PhoneIcon,
-  Github,
-  Twitter,
-  Linkedin,
-} from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ResumeDataSchemaType } from "@/lib/resume";
 import { useMemo } from "react";
+import { Icons } from "../icons";
 
 interface SocialButtonProps {
   href: string;
@@ -148,21 +142,21 @@ export function Header({
           {socialLinks.github && (
             <SocialButton
               href={socialLinks.github}
-              icon={Github}
+              icon={Icons.github}
               label="GitHub"
             />
           )}
           {socialLinks.twitter && (
             <SocialButton
               href={socialLinks.twitter}
-              icon={Twitter}
+              icon={Icons.x}
               label="Twitter"
             />
           )}
           {socialLinks.linkedin && (
             <SocialButton
               href={socialLinks.linkedin}
-              icon={Linkedin}
+              icon={Icons.linkedin}
               label="LinkedIn"
             />
           )}
