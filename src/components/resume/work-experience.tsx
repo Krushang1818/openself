@@ -39,7 +39,7 @@ export function WorkExperience({ work, className }: WorkExperienceProps) {
 
   return (
     <Section className={className}>
-      <h2 className="text-lg font-bold" id="work-experience">
+      <h2 className="text-xl font-bold" id="work-experience">
         Work Experience
       </h2>
       <div
