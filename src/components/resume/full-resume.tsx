@@ -1,12 +1,12 @@
-import { z } from "zod";
-import { withInteractable } from "@tambo-ai/react";
-import { Education } from "./education";
-import { Header } from "./header";
-import { Skills } from "./skills";
-import { Summary } from "./summary";
-import { WorkExperience } from "./work-experience";
-import { ResumeDataSchema, type ResumeDataSchemaType } from "@/lib/resume";
-import { Projects } from "./projects";
+import {
+  InteractableEducation,
+  InteractableHeader,
+  InteractableProjects,
+  InteractableSkills,
+  InteractableSummary,
+  InteractableWorkExperience,
+} from "@/components/resume";
+import { type ResumeDataSchemaType } from "@/lib/resume";
 
 export const FullResume = ({
   resume,
@@ -22,29 +22,19 @@ export const FullResume = ({
       className="w-full space-y-8 font-mono bg-white print:space-y-4 px-4 py-3 rounded-2xl"
       aria-label="Resume Content"
     >
-      <Header header={resume.header} picture={resume.picture} />
+      <InteractableHeader header={resume.header} picture={resume.picture} />
 
       <div className="flex flex-col gap-6">
-        <Summary summary={resume.summary} />
+        <InteractableSummary summary={resume.summary} />
 
-        <WorkExperience work={resume.workExperience} />
+        <InteractableWorkExperience work={resume.workExperience} />
 
-        <Projects projects={resume.projects} />
+        <InteractableProjects projects={resume.projects} />
 
-        <Education educations={resume.education} />
+        <InteractableEducation educations={resume.education} />
 
-        <Skills skills={resume.skills} />
+        <InteractableSkills skills={resume.skills} />
       </div>
     </section>
   );
 };
-
-// Create the interactable component
-export const InteractableFullResume = withInteractable(FullResume, {
-  componentName: "Resume",
-  description:
-    "Resume with header, summary, work experience, education, and skills",
-  propsSchema: z.object({
-    resume: ResumeDataSchema,
-  }),
-});

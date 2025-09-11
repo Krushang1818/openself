@@ -1,6 +1,9 @@
+import { z } from "zod";
+import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
 import { ResumeDataSchemaType } from "@/lib/resume";
 import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { withInteractable } from "@tambo-ai/react";
 
 interface ProjectsProps {
   projects: ResumeDataSchemaType["projects"];
@@ -79,3 +82,11 @@ export function Projects({ projects, className }: ProjectsProps) {
     </Section>
   );
 }
+
+export const InteractableProjects = withInteractable(Projects, {
+  componentName: "Projects",
+  description: "Projects section with a list of projects",
+  propsSchema: z.object({
+    projects: z.array(ProjectSectionSchema),
+  }),
+});

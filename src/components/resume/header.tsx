@@ -1,9 +1,12 @@
+import { z } from "zod";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ResumeDataSchemaType } from "@/lib/resume";
+import { HeaderSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
 import { useMemo } from "react";
 import { Icons } from "../icons";
+import { withInteractable } from "@tambo-ai/react";
+import { cn } from "@/lib/utils";
 
 interface SocialButtonProps {
   href: string;
@@ -30,16 +33,16 @@ function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
   );
 }
 
+interface HeaderProps {
+  header: ResumeDataSchemaType["header"];
+  picture?: string;
+  className?: string;
+}
+
 /**
  * Header component displaying personal information and contact details
  */
-export function Header({
-  header,
-  picture,
-}: {
-  header: ResumeDataSchemaType["header"];
-  picture?: string;
-}) {
+export function Header({ header, picture, className }: HeaderProps) {
   const prefixUrl = (stringToFix?: string) => {
     if (!stringToFix) return undefined;
     const url = stringToFix.trim();
@@ -91,7 +94,12 @@ export function Header({
   }
 
   return (
-    <header className="flex items-start md:items-center justify-between gap-4 ">
+    <header
+      className={cn(
+        "flex items-start md:items-center justify-between gap-4",
+        className,
+      )}
+    >
       <div className="flex-1 space-y-1.5">
         <h1 className="text-2xl font-bold" id="resume-name">
           {header.name}
@@ -215,3 +223,12 @@ export function Header({
     </header>
   );
 }
+
+export const InteractableHeader = withInteractable(Header, {
+  componentName: "Header",
+  description: "Header section with personal information",
+  propsSchema: z.object({
+    header: HeaderSectionSchema,
+    picture: z.string().optional().describe("URL of the profile picture"),
+  }),
+});

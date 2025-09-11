@@ -1,12 +1,20 @@
+import { z } from "zod";
 import { Section } from "@/components/ui/section";
-import { ResumeDataSchemaType, getShortMonth, getYear } from "@/lib/resume";
+import {
+  ResumeDataSchemaType,
+  WorkExperienceSectionSchema,
+  getShortMonth,
+  getYear,
+} from "@/lib/resume";
 import { useMemo } from "react";
+import { withInteractable } from "@tambo-ai/react";
 
-export function WorkExperience({
-  work,
-}: {
+interface WorkExperienceProps {
   work: ResumeDataSchemaType["workExperience"];
-}) {
+  className?: string;
+}
+
+export function WorkExperience({ work, className }: WorkExperienceProps) {
   // Filter out invalid work experiences and pre-format dates
   const validWork = useMemo(() => {
     return work
@@ -30,7 +38,7 @@ export function WorkExperience({
   }
 
   return (
-    <Section>
+    <Section className={className}>
       <h2 className="text-lg font-bold" id="work-experience">
         Work Experience
       </h2>
@@ -77,3 +85,11 @@ export function WorkExperience({
     </Section>
   );
 }
+
+export const InteractableWorkExperience = withInteractable(WorkExperience, {
+  componentName: "WorkExperience",
+  description: "Work experience section with a list of work experiences",
+  propsSchema: z.object({
+    work: WorkExperienceSectionSchema,
+  }),
+});

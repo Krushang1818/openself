@@ -1,11 +1,12 @@
+import { z } from "zod";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
-
-type Skills = readonly string[];
+import { withInteractable } from "@tambo-ai/react";
+import { ResumeDataSchemaType, SkillsSectionSchema } from "@/lib/resume";
 
 interface SkillsProps {
-  skills: Skills;
+  skills: ResumeDataSchemaType["skills"];
   className?: string;
 }
 
@@ -42,3 +43,11 @@ export function Skills({ skills, className }: SkillsProps) {
     </Section>
   );
 }
+
+export const InteractableSkills = withInteractable(Skills, {
+  componentName: "Skills",
+  description: "Skills section with a list of professional skills",
+  propsSchema: z.object({
+    skills: SkillsSectionSchema,
+  }),
+});
