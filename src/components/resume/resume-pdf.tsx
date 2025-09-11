@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Font,
-} from "@react-pdf/renderer";
-import { Resume as ResumeType } from "@/lib/resume";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { ResumeDataSchemaType } from "@/lib/resume";
 
 // Register fonts if needed
 // Font.register({
@@ -21,12 +14,6 @@ const styles = StyleSheet.create({
     padding: 30,
     fontSize: 12,
     fontFamily: "Helvetica",
-  },
-  header: {
-    marginBottom: 20,
-    borderBottom: 1,
-    borderBottomColor: "#e5e7eb",
-    paddingBottom: 10,
   },
   name: {
     fontSize: 24,
@@ -124,7 +111,7 @@ const styles = StyleSheet.create({
 });
 
 interface ResumePDFProps {
-  resume: ResumeType;
+  resume: ResumeDataSchemaType;
 }
 
 export function ResumePDF({ resume }: ResumePDFProps) {
@@ -132,79 +119,47 @@ export function ResumePDF({ resume }: ResumePDFProps) {
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.name}>
-            {resume.basicDetails.name || "Your Name"}
-          </Text>
-          {resume.basicDetails.bio && (
-            <Text style={styles.bio}>{resume.basicDetails.bio}</Text>
+        <View style={styles.section}>
+          <Text style={styles.name}>{resume.header.name || "Your Name"}</Text>
+          {resume.header.bio && (
+            <Text style={styles.bio}>{resume.header.bio}</Text>
           )}
-          {resume.basicDetails.location && (
-            <Text style={styles.location}>{resume.basicDetails.location}</Text>
+          {resume.header.location && (
+            <Text style={styles.location}>{resume.header.location}</Text>
           )}
         </View>
 
         {/* About Section */}
-        {resume.aboutSection?.detailedBio && (
+        {resume.summary && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>About</Text>
-            <Text style={styles.description}>
-              {resume.aboutSection.detailedBio}
-            </Text>
+            <Text style={styles.description}>{resume.summary}</Text>
           </View>
         )}
 
         {/* Experience */}
-        {resume.experience.length > 0 && (
+        {resume.workExperience.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Work Experience</Text>
-            {resume.experience.map((exp, index) => (
-              <View key={index} style={styles.experienceItem}>
-                <Text style={styles.jobTitle}>{exp.jobTitle}</Text>
-                <Text style={styles.company}>{exp.company}</Text>
-                <Text style={styles.date}>
-                  {exp.startDate} -{" "}
-                  {exp.isCurrentPosition ? "Present" : exp.endDate || "Present"}
-                  {exp.location && ` • ${exp.location}`}
-                </Text>
-                {exp.description && (
-                  <Text style={styles.description}>{exp.description}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Education */}
-        {resume.education.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Education</Text>
-            {resume.education.map((edu, index) => (
-              <View key={index} style={styles.educationItem}>
-                <Text style={styles.degree}>{edu.degree}</Text>
-                <Text style={styles.school}>{edu.school}</Text>
-                <Text style={styles.date}>
-                  {edu.startDate} -{" "}
-                  {edu.isCurrentlyEnrolled
-                    ? "Present"
-                    : edu.endDate || "Present"}
-                </Text>
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Skills */}
-        {resume.skills?.skills && resume.skills.skills.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Skills</Text>
-            <View style={styles.skills}>
-              {resume.skills.skills.map((skill, index) => (
-                <Text key={index} style={styles.skill}>
-                  {skill}
-                </Text>
-              ))}
-            </View>
+            {resume.workExperience.map(
+              (
+                exp: ResumeDataSchemaType["workExperience"][0],
+                index: number,
+              ) => (
+                <View key={index} style={styles.experienceItem}>
+                  <Text style={styles.jobTitle}>{exp.title}</Text>
+                  <Text style={styles.company}>{exp.company}</Text>
+                  <Text style={styles.date}>
+                    {exp.start} - {exp.end ? exp.end : "Present"}
+                    {exp.location && ` • ${exp.location}`}
+                    {exp.contract && ` • ${exp.contract}`}
+                  </Text>
+                  {exp.description && (
+                    <Text style={styles.description}>{exp.description}</Text>
+                  )}
+                </View>
+              ),
+            )}
           </View>
         )}
 
@@ -212,52 +167,65 @@ export function ResumePDF({ resume }: ResumePDFProps) {
         {resume.projects.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Projects</Text>
-            {resume.projects.map((project, index) => (
-              <View key={index} style={styles.projectItem}>
-                <Text style={styles.projectName}>{project.name}</Text>
-                {project.description && (
-                  <Text style={styles.projectDescription}>
-                    {project.description}
-                  </Text>
-                )}
-                {project.deployedUrl && (
-                  <Text style={styles.projectLink}>
-                    Live: {project.deployedUrl}
-                  </Text>
-                )}
-                {project.publicCodeUrl && (
-                  <Text style={styles.projectLink}>
-                    Code: {project.publicCodeUrl}
-                  </Text>
-                )}
-                {project.techStack && project.techStack.length > 0 && (
-                  <Text style={styles.techStack}>
-                    Tech: {project.techStack.join(", ")}
-                  </Text>
-                )}
-              </View>
-            ))}
+            {resume.projects.map(
+              (project: ResumeDataSchemaType["projects"][0], index: number) => (
+                <View key={index} style={styles.projectItem}>
+                  <Text style={styles.projectName}>{project.name}</Text>
+                  {project.description && (
+                    <Text style={styles.projectDescription}>
+                      {project.description}
+                    </Text>
+                  )}
+                  {project.deployedUrl && (
+                    <Text style={styles.projectLink}>
+                      Live: {project.deployedUrl}
+                    </Text>
+                  )}
+                  {project.publicCodeUrl && (
+                    <Text style={styles.projectLink}>
+                      Code: {project.publicCodeUrl}
+                    </Text>
+                  )}
+                  {project.techStack && project.techStack.length > 0 && (
+                    <Text style={styles.techStack}>
+                      Tech: {project.techStack.join(", ")}
+                    </Text>
+                  )}
+                </View>
+              ),
+            )}
           </View>
         )}
 
-        {/* Tools */}
-        {resume.tools.length > 0 && (
+        {/* Education */}
+        {resume.education.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Tools & Technologies</Text>
-            {Object.entries(
-              resume.tools.reduce((acc, tool) => {
-                if (!acc[tool.category]) {
-                  acc[tool.category] = [];
-                }
-                acc[tool.category].push(tool.name);
-                return acc;
-              }, {} as Record<string, string[]>),
-            ).map(([category, tools]) => (
-              <Text key={category} style={styles.description}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}:{" "}
-                {tools.join(", ")}
-              </Text>
-            ))}
+            <Text style={styles.sectionTitle}>Education</Text>
+            {resume.education.map(
+              (edu: ResumeDataSchemaType["education"][0], index: number) => (
+                <View key={index} style={styles.educationItem}>
+                  <Text style={styles.degree}>{edu.degree}</Text>
+                  <Text style={styles.school}>{edu.school}</Text>
+                  <Text style={styles.date}>
+                    {edu.start} - {edu.end ? edu.end : "Present"}
+                  </Text>
+                </View>
+              ),
+            )}
+          </View>
+        )}
+
+        {/* Skills */}
+        {resume.skills && resume.skills.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Skills</Text>
+            <View style={styles.skills}>
+              {resume.skills.map((skill: string, index: number) => (
+                <Text key={index} style={styles.skill}>
+                  {skill}
+                </Text>
+              ))}
+            </View>
           </View>
         )}
       </Page>

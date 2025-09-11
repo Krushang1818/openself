@@ -4,16 +4,17 @@ import { Download } from "lucide-react";
 import { ResumeDataSchemaType } from "@/lib/resume";
 import { pdf } from "@react-pdf/renderer";
 import { ResumePDF } from "./resume-pdf";
+import { Button } from "@/components/ui/button";
 
-interface DownloadButtonProps {
+interface ResumeActionBarProps {
   resume: ResumeDataSchemaType;
   className?: string;
 }
 
-export function DownloadButton({
+export function ResumeActionBar({
   resume,
   className = "",
-}: DownloadButtonProps) {
+}: ResumeActionBarProps) {
   const handleDownload = async () => {
     try {
       const blob = await pdf(<ResumePDF resume={resume} />).toBlob();
@@ -34,13 +35,15 @@ export function DownloadButton({
   };
 
   return (
-    <button
-      onClick={handleDownload}
-      className={`inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${className}`}
-      aria-label="Download resume as PDF"
+    <div
+      className={`sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3 ${className}`}
     >
-      <Download size={16} />
-      Download PDF
-    </button>
+      <div className="flex justify-end">
+        <Button onClick={handleDownload} aria-label="Download resume as PDF">
+          <Download className="size-4" />
+          Download PDF
+        </Button>
+      </div>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ import { components, tools } from "@/lib/tambo";
 import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
 import { FullResume } from "@/components/resume/full-resume";
+import { ResumeActionBar } from "@/components/resume/resume-action-bar";
 import { useResumeStore } from "@/store/resume-store";
 
 export default function ChatPage() {
@@ -21,7 +22,7 @@ export default function ChatPage() {
       tamboUrl={process.env.NEXT_PUBLIC_TAMBO_URL}
     >
       <TamboMcpProvider mcpServers={mcpServers}>
-        <main className="flex h-[calc(100vh-var(--header-height))] bg-gray-50">
+        <main className="flex h-[calc(100vh-var(--header-height))] divide-x divide-border bg-gray-50">
           {/* Chat */}
           <div className="flex-1 min-w-0 h-full">
             <div className="h-full flex flex-col">
@@ -35,10 +36,7 @@ export default function ChatPage() {
 
           {/* Resume */}
           <div className="flex-1 overflow-auto">
-            {/* Download Button */}
-            {/* <div className="mb-6 flex justify-end">
-                <DownloadButton resume={resume} />
-              </div> */}
+            {resumeData && <ResumeActionBar resume={resumeData} />}
 
             <div className="p-4">
               <FullResume resume={resumeData} />
