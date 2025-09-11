@@ -2,7 +2,7 @@
 
 An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React PDF, and Tambo AI.
 
-![Resume Builder](public/cv-home.png)
+![Resume Builder](public/og.png)
 
 ## ✨ Features
 
