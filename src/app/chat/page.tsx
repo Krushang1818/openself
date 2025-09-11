@@ -8,10 +8,12 @@ import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { InteractableFullResume } from "@/components/resume/full-resume";
+import { useResumeStore } from "@/store/resume-store";
 
 export default function ChatPage() {
   // Load MCP server configurations
   const mcpServers = useMcpServers();
+  const { resumeData } = useResumeStore();
 
   const [isChatOpen, setIsChatOpen] = useState(true);
 
@@ -69,7 +71,7 @@ export default function ChatPage() {
                 <DownloadButton resume={resume} />
               </div> */}
 
-              <InteractableFullResume resume={null} />
+              <InteractableFullResume resume={resumeData} />
             </div>
           </div>
         </div>

@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const MetadataSchema = z.object({
+  name: z.string().describe("Name of the resume"),
+  size: z.string().describe("Size for the resume"),
+});
+
 const HeaderContactsSchema = z.object({
   website: z.string().describe("Personal website or portfolio URL").optional(),
   email: z.string().describe("Email address").optional(),
@@ -64,6 +69,14 @@ export const ResumeDataSchema = z.object({
 });
 
 export type ResumeDataSchemaType = z.infer<typeof ResumeDataSchema>;
+
+export const ResumeStorageDataSchema = ResumeDataSchema.extend({
+  metadata: MetadataSchema,
+});
+
+export type ResumeStorageDataSchemaType = z.infer<
+  typeof ResumeStorageDataSchema
+>;
 
 export const getYear = (date: string) => {
   const dateObject = new Date(date);

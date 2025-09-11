@@ -39,7 +39,7 @@ function EducationItem({
         </div>
       </CardHeader>
       <CardContent
-        className="mt-2 text-design-resume print:text-[12px]"
+        className="mt-2 print:text-[12px]"
         aria-labelledby={`education-${school
           .toLowerCase()
           .replace(/\s+/g, "-")}`}

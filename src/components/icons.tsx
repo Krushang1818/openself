@@ -86,6 +86,8 @@ export const Icons = {
     <svg
       data-logo="logo"
       xmlns="http://www.w3.org/2000/svg"
+      width="203"
+      height="43"
       viewBox="0 0 203 43"
       {...props}
     >

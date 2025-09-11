@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer components {
+  .view-container {
+    @apply mx-auto w-full px-3 lg:px-12;
+  }
+}
+
 @theme inline {
   /* Tailwind CSS Variables customized with tambo colors */
   --color-background: var(--background);
@@ -35,6 +41,8 @@
 }
 
 :root {
+  --header-height: 3.5rem;
+
   /* Default Tailwind CSS Variables customized with tambo colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.14 0 285);

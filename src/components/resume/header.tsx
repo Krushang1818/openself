@@ -99,7 +99,7 @@ export function Header({
           {header.name}
         </h1>
         <p
-          className="max-w-md text-pretty font-mono text-sm text-design-resume print:text-[12px]"
+          className="max-w-md text-pretty font-mono text-sm print:text-[12px]"
           aria-labelledby="resume-name"
         >
           {header.shortAbout}
@@ -120,7 +120,7 @@ export function Header({
         </p>
 
         <div
-          className="flex gap-x-1 pt-1 font-mono text-sm text-design-resume print:hidden"
+          className="flex gap-x-1 pt-1 font-mono text-sm print:hidden"
           role="list"
           aria-label="Contact links"
         >
@@ -169,7 +169,7 @@ export function Header({
         </div>
 
         <div
-          className="hidden gap-x-2 font-mono text-sm text-design-resume print:flex print:text-[12px]"
+          className="hidden gap-x-2 font-mono text-sm print:flex print:text-[12px]"
           aria-label="Print contact information"
         >
           {socialLinks.website && (

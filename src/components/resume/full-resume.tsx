@@ -1,10 +1,9 @@
-import { withInteractable } from "@tambo-ai/react";
 import { Education } from "./education";
 import { Header } from "./header";
 import { Skills } from "./skills";
 import { Summary } from "./summary";
 import { WorkExperience } from "./work-experience";
-import { ResumeDataSchema, type ResumeDataSchemaType } from "@/lib/resume";
+import { type ResumeDataSchemaType } from "@/lib/resume";
 
 export const FullResume = ({
   resume,
@@ -37,10 +36,5 @@ export const FullResume = ({
   );
 };
 
-// Create the interactable component
-export const InteractableFullResume = withInteractable(FullResume, {
-  componentName: "FullResume",
-  description:
-    "Full resume with header, summary, work experience, education, and skills",
-  propsSchema: ResumeDataSchema,
-});
+// Export the component for registration in tambo.ts
+export const InteractableFullResume = FullResume;
