@@ -43,7 +43,7 @@ export function WorkExperience({
           return (
             <div
               key={item.company + item.location + item.title}
-              className="font-mono flex flex-col justify-start items-start gap-1 print:mb-4"
+              className="flex flex-col justify-start items-start gap-1 print:mb-4"
             >
               <div className="flex flex-wrap justify-between items-start self-stretch gap-2">
                 <div className="flex flex-wrap justify-start items-center gap-2">
@@ -61,7 +61,7 @@ export function WorkExperience({
                 </p>
               </div>
               <div className="flex flex-col justify-start items-start relative gap-1.5">
-                <p className="self-stretch text-sm font-medium text-left text-[#54575e] font-mono capitalize flex flex-wrap gap-1">
+                <p className="self-stretch text-sm font-medium text-left text-[#54575e] capitalize flex flex-wrap gap-1">
                   <span>{item.companyLower}</span>
                   {item.company && item.contract && <span>·</span>}
                   <span>{item.contract}</span>

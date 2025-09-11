@@ -99,13 +99,13 @@ export function Header({
           {header.name}
         </h1>
         <p
-          className="max-w-md text-pretty font-mono text-sm print:text-[12px]"
+          className="max-w-md text-pretty text-sm print:text-[12px]"
           aria-labelledby="resume-name"
         >
           {header.shortAbout}
         </p>
 
-        <p className="max-w-md items-center text-pretty font-mono text-xs text-foreground">
+        <p className="max-w-md items-center text-pretty text-xs text-foreground">
           <a
             className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline text-[#9CA0A8]"
             href={`https://www.google.com/maps/search/${encodeURIComponent(
@@ -120,7 +120,7 @@ export function Header({
         </p>
 
         <div
-          className="flex gap-x-1 pt-1 font-mono text-sm print:hidden"
+          className="flex gap-x-1 pt-1 text-sm print:hidden"
           role="list"
           aria-label="Contact links"
         >
@@ -169,7 +169,7 @@ export function Header({
         </div>
 
         <div
-          className="hidden gap-x-2 font-mono text-sm print:flex print:text-[12px]"
+          className="hidden gap-x-2 text-sm print:flex print:text-[12px]"
           aria-label="Print contact information"
         >
           {socialLinks.website && (

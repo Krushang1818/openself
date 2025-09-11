@@ -1,4 +1,3 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { ResumeDataSchemaType, getYear } from "@/lib/resume";
 import { useMemo } from "react";
@@ -19,8 +18,8 @@ function EducationItem({
   }
 
   return (
-    <Card>
-      <CardHeader>
+    <div>
+      <div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-base">
           <h3
             className="font-semibold leading-none"
@@ -37,16 +36,16 @@ function EducationItem({
             {getYear(start)} - {end ? `${getYear(end)}` : "Present"}
           </div>
         </div>
-      </CardHeader>
-      <CardContent
-        className="mt-2 print:text-[12px]"
+      </div>
+      <div
+        className="mt-2 text-sm text-pretty print:text-[12px]"
         aria-labelledby={`education-${school
           .toLowerCase()
           .replace(/\s+/g, "-")}`}
       >
         {degree}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
