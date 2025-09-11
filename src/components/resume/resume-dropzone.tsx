@@ -119,7 +119,7 @@ export function ResumeDropzone({
             `${(Number(file.size) / 1024 / 1024).toFixed(2)} MB`
           ) : (
             <span className="inline-flex items-center gap-2">
-              <FileLock2Icon className="size-4" />
+              <FileLock2Icon className="size-4 shrink-0" />
               File data is used locally and never leaves your browser
             </span>
           )
