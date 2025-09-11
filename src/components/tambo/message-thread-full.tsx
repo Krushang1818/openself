@@ -49,6 +49,7 @@ export interface MessageThreadFullProps
    * @example variant="compact"
    */
   variant?: VariantProps<typeof messageVariants>["variant"];
+  hideHistory?: boolean;
 }
 
 /**
@@ -57,36 +58,44 @@ export interface MessageThreadFullProps
 export const MessageThreadFull = React.forwardRef<
   HTMLDivElement,
   MessageThreadFullProps
->(({ className, contextKey, variant, ...props }, ref) => {
+>(({ className, contextKey, variant, hideHistory, ...props }, ref) => {
   const { containerRef, historyPosition } = useThreadContainerContext();
   const mergedRef = useMergedRef<HTMLDivElement | null>(ref, containerRef);
 
-  const threadHistorySidebar = (
-    <ThreadHistory contextKey={contextKey} position={historyPosition}>
-      <ThreadHistoryHeader />
-      <ThreadHistoryNewButton />
-      <ThreadHistorySearch />
-      <ThreadHistoryList />
-    </ThreadHistory>
-  );
+  const threadHistorySidebar = () => {
+    if (hideHistory) {
+      return null;
+    }
+
+    return (
+      <ThreadHistory contextKey={contextKey} position={historyPosition}>
+        <ThreadHistoryHeader />
+        <ThreadHistoryNewButton />
+        <ThreadHistorySearch />
+        <ThreadHistoryList />
+      </ThreadHistory>
+    );
+  };
 
   const defaultSuggestions: Suggestion[] = [
     {
       id: "suggestion-1",
-      title: "Get started",
-      detailedSuggestion: "What can you help me with?",
-      messageId: "welcome-query",
+      title: "Add Next.js to skills",
+      detailedSuggestion: "Add Next.js to skills section in your resume.",
+      messageId: "add-skill",
     },
     {
       id: "suggestion-2",
-      title: "Learn more",
-      detailedSuggestion: "Tell me about your capabilities.",
-      messageId: "capabilities-query",
+      title: "Update name to John Doe",
+      detailedSuggestion:
+        "Update name to John Doe in header section of your resume.",
+      messageId: "update-name",
     },
     {
       id: "suggestion-3",
-      title: "Examples",
-      detailedSuggestion: "Show me some example queries I can try.",
+      title: "Move projects above experience",
+      detailedSuggestion:
+        "Move projects above experience section in your resume.",
       messageId: "examples-query",
     },
   ];
@@ -94,7 +103,7 @@ export const MessageThreadFull = React.forwardRef<
   return (
     <>
       {/* Thread History Sidebar - rendered first if history is on the left */}
-      {historyPosition === "left" && threadHistorySidebar}
+      {historyPosition === "left" && threadHistorySidebar()}
 
       <ThreadContainer ref={mergedRef} className={className} {...props}>
         <ScrollableMessageContainer className="p-4">
@@ -127,7 +136,7 @@ export const MessageThreadFull = React.forwardRef<
       </ThreadContainer>
 
       {/* Thread History Sidebar - rendered last if history is on the right */}
-      {historyPosition === "right" && threadHistorySidebar}
+      {historyPosition === "right" && threadHistorySidebar()}
     </>
   );
 });

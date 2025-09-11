@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 flex h-[var(--header-height)] w-full border-b backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="view-container relative flex items-center justify-between">
+      <div className="view-container relative flex items-center justify-between px-4">
         {/* Logo on the left */}
         <div className="flex-shrink-0">
           <Link href="/" className="flex items-center">

@@ -4,7 +4,7 @@
 
 @layer components {
   .view-container {
-    @apply mx-auto w-full px-3 lg:px-12;
+    @apply mx-auto w-full;
   }
 }
 
