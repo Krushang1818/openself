@@ -1,6 +1,7 @@
 import {
   InteractableEducation,
   InteractableHeader,
+  InteractableProjects,
   InteractableSkills,
   InteractableSummary,
   InteractableWorkExperience,
@@ -21,12 +22,14 @@ export const FullResume = ({
       className="w-full space-y-8 font-mono bg-white print:space-y-4 px-4 py-3 rounded-2xl"
       aria-label="Resume Content"
     >
-      <InteractableHeader header={resume?.header} picture={resume.picture} />
+      <InteractableHeader header={resume.header} picture={resume.picture} />
 
       <div className="flex flex-col gap-6">
-        <InteractableSummary summary={resume?.summary} />
+        <InteractableSummary summary={resume.summary} />
 
-        <InteractableWorkExperience work={resume?.workExperience} />
+        <InteractableWorkExperience work={resume.workExperience} />
+
+        <InteractableProjects projects={resume.projects} />
 
         <InteractableEducation educations={resume.education} />
 
