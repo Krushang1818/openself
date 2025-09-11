@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   school: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "bold",
   },
   educationDate: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   degree: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#374151",
   },
   skills: {
