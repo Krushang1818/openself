@@ -93,10 +93,10 @@ export const MessageThreadFull = React.forwardRef<
     },
     {
       id: "suggestion-3",
-      title: "Move projects above experience",
+      title: "Update location to San Francisco",
       detailedSuggestion:
-        "Move projects above experience section in your resume.",
-      messageId: "examples-query",
+        "Update location to San Francisco in header section of your resume.",
+      messageId: "update-location",
     },
   ];
 

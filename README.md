@@ -1,6 +1,6 @@
 # Cursor for Resumes
 
-An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React, and Tambo AI.
+An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React PDF, and Tambo AI.
 
 ![Resume Builder](public/cv-home.png)
 
@@ -21,14 +21,15 @@ An AI-powered resume builder that helps you create professional resumes with int
 - Node.js 18+
 - pnpm
 - Tambo AI API key (get one at [tambo.co](https://tambo.co))
+- Gemini API key (get one at [aistudio.google.com](https://aistudio.google.com))
 
 ### Installation
 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/cursor-resumes.git
-   cd cursor-resumes
+   git clone https://github.com/Aniket-508/openself.git
+   cd openself
    ```
 
 2. **Install dependencies**
@@ -50,6 +51,7 @@ An AI-powered resume builder that helps you create professional resumes with int
    ```
 
 5. **Open your browser**
+
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📖 Usage
@@ -204,7 +206,3 @@ If you have any questions or need help:
 - Open an issue on GitHub
 - Check the [Tambo Documentation](https://docs.tambo.co)
 - Visit the [Next.js Documentation](https://nextjs.org/docs)
-
----
-
-**Made with ❤️ using Cursor, Next.js, and Tambo AI**
