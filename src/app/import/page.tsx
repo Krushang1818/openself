@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ResumeDropzone } from "@/components/resume-dropzone";
 import { useResumeStore } from "@/store/resume-store";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/lib/routes";
 
 function SectionWithHeadingAndCreateButton({
   heading,
@@ -18,7 +19,7 @@ function SectionWithHeadingAndCreateButton({
       <p className="font-semibold">{heading}</p>
       <div className="mt-4">
         <Button asChild>
-          <Link href="/chat">{buttonText}</Link>
+          <Link href={ROUTES.CHAT}>{buttonText}</Link>
         </Button>
       </div>
     </>

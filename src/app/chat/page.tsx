@@ -39,12 +39,12 @@ export default function ChatPage() {
 
           {/* Resume */}
           <div className="flex-1 overflow-auto">
-            <div className="p-8">
-              {/* Download Button */}
-              {/* <div className="mb-6 flex justify-end">
+            {/* Download Button */}
+            {/* <div className="mb-6 flex justify-end">
                 <DownloadButton resume={resume} />
               </div> */}
 
+            <div className="p-4">
               <InteractableFullResume resume={resumeData} />
             </div>
           </div>

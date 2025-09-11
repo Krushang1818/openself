@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { generateResumeObject } from "@/lib/server/ai/generate-resume-object";
 import { useResumeStore } from "@/store/resume-store";
 import { parsePdf } from "@/lib/server/parse-pdf";
+import { ROUTES } from "@/lib/routes";
 
 const defaultFileState = {
   name: "",
@@ -65,7 +66,7 @@ export function ResumeDropzone({
       setResumeData(resumeObject);
 
       // Navigate to chat page
-      router.push("/chat");
+      router.push(ROUTES.CHAT);
     } catch (error) {
       console.error("Error processing resume:", error);
       setError(

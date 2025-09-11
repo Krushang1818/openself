@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icons } from "@/components/icons";
 import { Button } from "./ui/button";
+import { GITHUB_URL, TWITTER_URL } from "@/lib/social";
+import { ROUTES } from "@/lib/routes";
 
 export function Navbar() {
   return (
@@ -8,7 +10,7 @@ export function Navbar() {
       <div className="view-container relative flex items-center justify-between px-4">
         {/* Logo on the left */}
         <div className="flex-shrink-0">
-          <Link href="/" className="flex items-center">
+          <Link href={ROUTES.HOME} className="flex items-center">
             <Icons.logo className="h-6 w-full" />
           </Link>
         </div>
@@ -16,16 +18,12 @@ export function Navbar() {
         {/* Social icons on the right */}
         <nav className="flex items-center gap-2">
           <Button variant="outline" size="icon" asChild>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
               <Icons.github className="h-5 w-5" />
             </a>
           </Button>
           <Button variant="outline" size="icon" asChild>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+            <a href={TWITTER_URL} target="_blank" rel="noopener noreferrer">
               <Icons.x className="h-5 w-5" />
             </a>
           </Button>
