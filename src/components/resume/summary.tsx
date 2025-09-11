@@ -23,7 +23,7 @@ export function Summary({ summary, className }: SummaryProps) {
         About
       </h2>
       <div
-        className="text-pretty text-sm print:text-[12px]"
+        className="text-pretty text-sm print:text-[12px] text-neutral-500"
         aria-labelledby="about-section"
       >
         {summary}

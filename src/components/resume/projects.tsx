@@ -40,7 +40,9 @@ export function Projects({ projects, className }: ProjectsProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       title="View deployed project"
+                      className="inline-flex items-center gap-1 text-neutral-700 text-sm"
                     >
+                      Website
                       <ExternalLinkIcon className="size-4" />
                     </a>
                   )}
@@ -49,7 +51,9 @@ export function Projects({ projects, className }: ProjectsProps) {
                       href={project.publicCodeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-neutral-700 text-sm"
                     >
+                      Source
                       <GitBranchIcon className="size-4" />
                     </a>
                   )}

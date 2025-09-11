@@ -55,26 +55,26 @@ export function WorkExperience({ work, className }: WorkExperienceProps) {
             >
               <div className="flex flex-wrap justify-between items-start self-stretch gap-2">
                 <div className="flex flex-wrap justify-start items-center gap-2">
-                  <p className="text-base font-semibold text-left text-[#050914]">
+                  <p className="text-base font-semibold text-left">
                     {item.title}
                   </p>
-                  <div className="flex justify-center items-center relative overflow-hidden gap-2.5 px-[7px] py-0.5 rounded bg-[#eeeff0]">
-                    <p className="text-[12px] font-semibold text-center text-[#54575e]">
+                  <div className="flex justify-center items-center relative overflow-hidden gap-2.5 px-[7px] py-0.5 rounded">
+                    <p className="text-[12px] font-semibold text-center text-neutral-600">
                       {item.location}
                     </p>
                   </div>
                 </div>
-                <p className="text-sm text-right text-[#54575e]">
+                <p className="text-sm text-right text-neutral-700">
                   {item.formattedDate}
                 </p>
               </div>
               <div className="flex flex-col justify-start items-start relative gap-1.5">
-                <p className="self-stretch text-sm font-medium text-left text-[#54575e] capitalize flex flex-wrap gap-1">
+                <p className="self-stretch text-sm font-medium text-left text-neutral-600 capitalize flex flex-wrap gap-1">
                   <span>{item.companyLower}</span>
                   {item.company && item.contract && <span>·</span>}
                   <span>{item.contract}</span>
                 </p>
-                <p className="self-stretch text-sm font-medium text-left text-[#6c737f]">
+                <p className="self-stretch text-sm font-medium text-left text-neutral-500">
                   {item.description}
                 </p>
               </div>

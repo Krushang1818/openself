@@ -105,7 +105,7 @@ export function Header({ header, picture, className }: HeaderProps) {
           {header.name}
         </h1>
         <p
-          className="max-w-md text-pretty text-sm print:text-[12px]"
+          className="max-w-md text-pretty text-sm print:text-[12px] text-neutral-500"
           aria-labelledby="resume-name"
         >
           {header.bio}
@@ -113,7 +113,7 @@ export function Header({ header, picture, className }: HeaderProps) {
 
         <p className="max-w-md items-center text-pretty text-xs text-foreground">
           <a
-            className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline text-[#9CA0A8]"
+            className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline text-neutral-400"
             href={`https://www.google.com/maps/search/${encodeURIComponent(
               header.location || "",
             )}`}

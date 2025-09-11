@@ -33,7 +33,7 @@ function EducationItem({
           {school}
         </h3>
         <div
-          className="text-sm tabular-nums text-neutral-500"
+          className="text-sm tabular-nums text-neutral-700"
           aria-label={`Period: ${getYear(start)} to ${
             end ? ` ${getYear(end)}` : "Present"
           }`}
@@ -42,7 +42,7 @@ function EducationItem({
         </div>
       </div>
       <div
-        className="mt-2 text-sm text-pretty print:text-[12px]"
+        className="mt-2 text-sm text-pretty text-neutral-500 print:text-[12px]"
         aria-labelledby={`education-${school
           .toLowerCase()
           .replace(/\s+/g, "-")}`}
