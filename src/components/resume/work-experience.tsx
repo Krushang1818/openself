@@ -87,7 +87,7 @@ export function WorkExperience({ work, className }: WorkExperienceProps) {
 }
 
 export const InteractableWorkExperience = withInteractable(WorkExperience, {
-  componentName: "Work Experience",
+  componentName: "WorkExperience",
   description: "Work experience section with a list of work experiences",
   propsSchema: z.object({
     work: WorkExperienceSectionSchema,
