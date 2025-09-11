@@ -11,6 +11,10 @@ interface AboutProps {
  * Displays a summary of professional experience and goals
  */
 export function Summary({ summary, className }: AboutProps) {
+  if (!summary) {
+    return null;
+  }
+
   return (
     <Section className={className}>
       <h2 className="text-xl font-bold" id="about-section">

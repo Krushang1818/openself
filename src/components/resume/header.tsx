@@ -86,6 +86,10 @@ export function Header({
     header.contacts.linkedin,
   ]);
 
+  if (!header) {
+    return null;
+  }
+
   return (
     <header className="flex items-start md:items-center justify-between gap-4 ">
       <div className="flex-1 space-y-1.5">

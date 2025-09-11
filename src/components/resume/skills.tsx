@@ -14,6 +14,10 @@ interface SkillsProps {
  * Displays a list of professional skills as badges
  */
 export function Skills({ skills, className }: SkillsProps) {
+  if (skills.length === 0) {
+    return null;
+  }
+
   return (
     <Section className={className}>
       <h2 className="text-xl font-bold" id="skills-section">
