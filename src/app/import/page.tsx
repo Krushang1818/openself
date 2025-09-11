@@ -51,7 +51,7 @@ export default function ImportPage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center py-14 flex-1">
+    <main className="flex flex-col items-center justify-center px-4 py-14 flex-1">
       <div className="mx-auto w-full max-w-3xl rounded-md border px-10 py-10 text-center shadow-md">
         {!resumeData ? (
           <>
