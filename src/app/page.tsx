@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex-1 view-container max-w-[1200px] px-4 pt-20 flex flex-col md:flex-row pb-16">
+    <main className="flex-1 view-container max-w-[1200px] px-4 pt-20 flex max-md:gap-10 flex-col md:flex-row pb-16">
       {/* Left side - Call to action */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start">
         <div className="max-w-md text-center md:text-left">
