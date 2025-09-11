@@ -3,6 +3,9 @@ import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+import { SITE_INFO } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,25 +17,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: MAIN_METADATA.TITLE,
-//   description: MAIN_METADATA.DESCRIPTION,
-//   openGraph: {
-//     type: "website",
-//     siteName: MAIN_METADATA.SITE_NAME,
-//     url: MAIN_METADATA.URL,
-//     title: MAIN_METADATA.TITLE,
-//     description: MAIN_METADATA.DESCRIPTION,
-//     images: MAIN_METADATA.IMAGE,
-//   },
-//   twitter: {
-//     card: "summary",
-//     title: MAIN_METADATA.TITLE,
-//     description: MAIN_METADATA.DESCRIPTION,
-//     images: MAIN_METADATA.IMAGE,
-//   },
-// };
-
+export async function generateMetadata(): Promise<Metadata> {
+  return createMetadata({
+    title: SITE_INFO.title,
+    description: SITE_INFO.description,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+  });
+}
 export default function RootLayout({
   children,
 }: Readonly<{
