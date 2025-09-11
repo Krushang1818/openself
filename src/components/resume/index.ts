@@ -4,3 +4,7 @@ export { WorkExperience, InteractableWorkExperience } from "./work-experience";
 export { Projects, InteractableProjects } from "./projects";
 export { Education, InteractableEducation } from "./education";
 export { Skills, InteractableSkills } from "./skills";
+export { ResumeActionBar } from "./resume-action-bar";
+export { ResumeDropzone } from "./resume-dropzone";
+export { ResumePDF } from "./resume-pdf";
+export { FullResume } from "./full-resume";

@@ -5,8 +5,7 @@ import { useMcpServers } from "@/components/tambo/mcp-config-modal";
 import { components, tools } from "@/lib/tambo";
 import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
-import { FullResume } from "@/components/resume/full-resume";
-import { ResumeActionBar } from "@/components/resume/resume-action-bar";
+import { ResumeActionBar, FullResume } from "@/components/resume";
 import { useResumeStore } from "@/store/resume-store";
 
 export default function ChatPage() {

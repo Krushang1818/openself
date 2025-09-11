@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ResumeDropzone } from "@/components/resume/resume-dropzone";
+import { ResumeDropzone } from "@/components/resume";
 import { useResumeStore } from "@/store/resume-store";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/routes";
