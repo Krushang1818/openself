@@ -9,10 +9,8 @@ import { ResumeDataSchema, type ResumeDataSchemaType } from "@/lib/resume";
 
 export const FullResume = ({
   resume,
-  profilePicture,
 }: {
   resume?: ResumeDataSchemaType | null;
-  profilePicture?: string;
 }) => {
   if (!resume) {
     return null;
@@ -23,7 +21,7 @@ export const FullResume = ({
       className="w-full space-y-8 font-mono bg-white print:space-y-4 px-4 py-3 rounded-2xl"
       aria-label="Resume Content"
     >
-      <Header header={resume?.header} picture={profilePicture} />
+      <Header header={resume?.header} picture={resume.picture} />
 
       <div className="flex flex-col gap-6">
         <Summary summary={resume?.summary} />
@@ -32,7 +30,7 @@ export const FullResume = ({
 
         <Education educations={resume.education} />
 
-        <Skills skills={resume.header.skills} />
+        <Skills skills={resume.skills} />
       </div>
     </section>
   );

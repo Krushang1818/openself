@@ -96,7 +96,7 @@ export function Header({
           className="max-w-md text-pretty text-sm print:text-[12px]"
           aria-labelledby="resume-name"
         >
-          {header.shortAbout}
+          {header.bio}
         </p>
 
         <p className="max-w-md items-center text-pretty text-xs text-foreground">
