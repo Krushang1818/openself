@@ -51,14 +51,15 @@ export function ResumeDropzone({
         resumeObject = {
           header: {
             name: "John Doe",
-            shortAbout: "This is a short description of your profile",
+            bio: "This is a short description of your profile",
             location: "",
             contacts: {},
-            skills: ["Add your skills here"],
           },
           summary: "You should add a summary here",
           workExperience: [],
           education: [],
+          projects: [],
+          skills: ["Cooking", "Singing", "Dancing"],
         };
       }
 
