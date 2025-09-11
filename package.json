@@ -1,7 +1,24 @@
 {
-  "name": "tambo-template",
-  "version": "0.1.0",
+  "name": "openself",
+  "version": "1.0.0",
   "private": true,
+  "description": "AI-powered resume builder with PDF generation and interactive chat interface",
+  "author": "Cursor for Resumes",
+  "keywords": [
+    "resume",
+    "builder",
+    "pdf",
+    "ai",
+    "nextjs",
+    "react",
+    "tambo"
+  ],
+  "homepage": "https://openself.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aniket-508/openself"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

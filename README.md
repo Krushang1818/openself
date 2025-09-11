@@ -1,148 +1,210 @@
-# Tambo Template
+# Cursor for Resumes
 
-This is a starter NextJS app with Tambo hooked up to get your AI app development started quickly.
+An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React, and Tambo AI.
 
-## Get Started
+![Resume Builder](public/cv-home.png)
 
-1. Run `npm create-tambo@latest my-tambo-app` for a new project
+## ✨ Features
 
-2. `npm install`
+- **AI-Powered Resume Creation**: Chat with AI to build your resume interactively
+- **Real-time PDF Generation**: Generate professional PDF resumes instantly
+- **Interactive Components**: Dynamic resume sections that can be controlled by AI
+- **Modern UI**: Clean, responsive design with dark mode support
+- **Data Persistence**: Automatic saving to local storage
+- **Type-Safe**: Full TypeScript support with Zod validation
+- **PDF Export**: High-quality PDF generation with React PDF
 
-3. `npx tambo init`
+## 🚀 Quick Start
 
-- or rename `example.env.local` to `.env.local` and add your tambo API key you can get for free [here](https://tambo.co/dashboard).
+### Prerequisites
 
-4. Run `npm run dev` and go to `localhost:3000` to use the app!
+- Node.js 18+
+- pnpm
+- Tambo AI API key (get one at [tambo.co](https://tambo.co))
 
-## Customizing
+### Installation
 
-### Change what components tambo can control
+1. **Clone the repository**
 
-You can see how the `Graph` component is registered with tambo in `src/lib/tambo.ts`:
+   ```bash
+   git clone https://github.com/yourusername/cursor-resumes.git
+   cd cursor-resumes
+   ```
 
-```tsx
-const components: TamboComponent[] = [
-  {
-    name: "Graph",
-    description:
-      "A component that renders various types of charts (bar, line, pie) using Recharts. Supports customizable data visualization with labels, datasets, and styling options.",
-    component: Graph,
-    propsSchema: z.object({
-      data: z
-        .object({
-          type: z
-            .enum(["bar", "line", "pie"])
-            .describe("Type of graph to render"),
-          labels: z.array(z.string()).describe("Labels for the graph"),
-          datasets: z
-            .array(
-              z.object({
-                label: z.string().describe("Label for the dataset"),
-                data: z
-                  .array(z.number())
-                  .describe("Data points for the dataset"),
-                color: z
-                  .string()
-                  .optional()
-                  .describe("Optional color for the dataset"),
-              }),
-            )
-            .describe("Data for the graph"),
-        })
-        .describe("Data object containing chart configuration and values"),
-      title: z.string().optional().describe("Optional title for the chart"),
-      showLegend: z
-        .boolean()
-        .optional()
-        .describe("Whether to show the legend (default: true)"),
-      variant: z
-        .enum(["default", "solid", "bordered"])
-        .optional()
-        .describe("Visual style variant of the graph"),
-      size: z
-        .enum(["default", "sm", "lg"])
-        .optional()
-        .describe("Size of the graph"),
-    }),
-  },
-  // Add more components for Tambo to control here!
-];
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   cp .example.env .env.local
+   ```
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📖 Usage
+
+### Building Your Resume
+
+1. **Start a Chat**: Use the chat interface to describe your experience, skills, and background
+2. **AI Assistance**: The AI will help structure your information into professional resume sections
+3. **Real-time Preview**: See your resume build in real-time on the right side
+4. **Download PDF**: Click the "Download PDF" button to get your professional resume
+
+### Resume Sections
+
+- **Header**: Personal information, contact details, and social links
+- **Summary**: Professional summary and bio
+- **Work Experience**: Job history with detailed descriptions
+- **Projects**: Personal and professional projects
+- **Education**: Academic background and certifications
+- **Skills**: Technical and soft skills
+
+## 🏗️ Architecture
+
+### Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS v4
+- **AI Integration**: Tambo AI
+- **PDF Generation**: React PDF
+- **State Management**: Zustand
+- **Form Validation**: Zod
+- **UI Components**: Radix UI, Lucide Icons
+
+### Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── chat/              # Chat interface page
+│   ├── layout.tsx         # Root layout with providers
+│   └── page.tsx           # Landing page
+├── components/            # React components
+│   ├── resume/           # Resume-specific components
+│   ├── tambo/            # AI chat components
+│   ├── ui/               # Reusable UI components
+│   └── resume-action-bar.tsx # PDF download component
+├── lib/                   # Utilities and configurations
+│   ├── tambo.ts          # Tambo AI configuration
+│   └── resume.ts         # Resume data schemas
+├── store/                 # State management
+│   └── resume-store.ts   # Resume data store
+└── styles/                # Global styles
 ```
 
-You can install this graph component into any project with:
+## 🎨 Customization
+
+### Adding New Resume Sections
+
+1. **Define the schema** in `src/lib/resume.ts`:
+
+   ```typescript
+   export const CustomSectionSchema = z.array(
+     z.object({
+       title: z.string(),
+       description: z.string(),
+       // ... other fields
+     }),
+   );
+   ```
+
+2. **Update the main schema**:
+
+   ```typescript
+   export const ResumeDataSchema = z.object({
+     // ... existing fields
+     customSection: CustomSectionSchema,
+   });
+   ```
+
+3. **Create a component** in `src/components/resume/`:
+
+   ```tsx
+   export function CustomSection({ data }: { data: CustomSectionData[] }) {
+     // Component implementation
+   }
+   ```
+
+4. **Register with Tambo** in `src/lib/tambo.ts`:
+   ```tsx
+   export const components: TamboComponent[] = [
+     // ... existing components
+     {
+       name: "CustomSection",
+       description: "Custom resume section",
+       component: CustomSection,
+       propsSchema: CustomSectionSchema,
+     },
+   ];
+   ```
+
+### Styling
+
+The app uses Tailwind CSS v4 with custom design tokens. Modify styles in:
+
+- `src/app/globals.css` - Global styles
+- `tailwind.config.ts` - Tailwind configuration
+- Component-specific styles using Tailwind classes
+
+## 🔧 Development
+
+### Available Scripts
 
 ```bash
-npx tambo add graph
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint issues
+npm run check-types  # Type checking
 ```
 
-The example Graph component demonstrates several key features:
+### Environment Variables
 
-- Different prop types (strings, arrays, enums, nested objects)
-- Multiple chart types (bar, line, pie)
-- Customizable styling (variants, sizes)
-- Optional configurations (title, legend, colors)
-- Data visualization capabilities
+| Variable                       | Description           | Required                    |
+| ------------------------------ | --------------------- | --------------------------- |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | Your Gemini API key   | Yes                         |
+| `NEXT_PUBLIC_TAMBO_API_KEY`    | Your Tambo AI API key | Yes                         |
+| `NEXT_PUBLIC_TAMBO_URL`        | Tambo API URL         | No (defaults to production) |
 
-Update the `components` array with any component(s) you want tambo to be able to use in a response!
+## 🤝 Contributing
 
-You can find more information about the options [here](https://tambo.co/docs/concepts/registering-components)
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request
 
-### Add tools for tambo to use
+## 📄 License
 
-```tsx
-export const tools: TamboTool[] = [
-  {
-    name: "globalPopulation",
-    description:
-      "A tool to get global population trends with optional year range filtering",
-    tool: getGlobalPopulationTrend,
-    toolSchema: z.function().args(
-      z
-        .object({
-          startYear: z.number().optional(),
-          endYear: z.number().optional(),
-        })
-        .optional(),
-    ),
-  },
-];
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Find more information about tools [here.](https://tambo.co/docs/concepts/tools)
+## 🙏 Acknowledgments
 
-### The Magic of Tambo Requires the TamboProvider
+- [Tambo AI](https://tambo.co) - For the AI integration framework
+- [React PDF](https://react-pdf.org/) - For PDF generation
+- [Next.js](https://nextjs.org/) - For the React framework
+- [Tailwind CSS](https://tailwindcss.com/) - For styling
 
-Make sure in the TamboProvider wrapped around your app:
+## 📞 Support
 
-```tsx
-...
-<TamboProvider
-  apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
-  components={components} // Array of components to control
-  tools={tools} // Array of tools it can use
->
-  {children}
-</TamboProvider>
-```
+If you have any questions or need help:
 
-In this example we do this in the `Layout.tsx` file, but you can do it anywhere in your app that is a client component.
+- Open an issue on GitHub
+- Check the [Tambo Documentation](https://docs.tambo.co)
+- Visit the [Next.js Documentation](https://nextjs.org/docs)
 
-### Change where component responses are shown
+---
 
-The components used by tambo are shown alongside the message resopnse from tambo within the chat thread, but you can have the result components show wherever you like by accessing the latest thread message's `renderedComponent` field:
-
-```tsx
-const { thread } = useTambo();
-const latestComponent =
-  thread?.messages[thread.messages.length - 1]?.renderedComponent;
-
-return (
-  <div>
-    {latestComponent && (
-      <div className="my-custom-wrapper">{latestComponent}</div>
-    )}
-  </div>
-);
-```
-
-For more detailed documentation, visit [Tambo's official docs](https://docs.tambo.co).
+**Made with ❤️ using Cursor, Next.js, and Tambo AI**
