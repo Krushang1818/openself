@@ -34,7 +34,7 @@ export function Projects({ projects, className }: ProjectsProps) {
                 </h3>
 
                 <div className="flex gap-4">
-                  {true && (
+                  {project.deployedUrl && (
                     <a
                       href={project.deployedUrl}
                       target="_blank"
@@ -46,7 +46,7 @@ export function Projects({ projects, className }: ProjectsProps) {
                       <ExternalLinkIcon className="size-4" />
                     </a>
                   )}
-                  {true && (
+                  {project.publicCodeUrl && (
                     <a
                       href={project.publicCodeUrl}
                       target="_blank"
