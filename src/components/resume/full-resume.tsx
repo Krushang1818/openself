@@ -39,8 +39,8 @@ export const FullResume = ({
 
 // Create the interactable component
 export const InteractableFullResume = withInteractable(FullResume, {
-  componentName: "FullResume",
+  componentName: "Resume",
   description:
-    "Full resume with header, summary, work experience, education, and skills",
+    "Resume with header, summary, work experience, education, and skills",
   propsSchema: ResumeDataSchema,
 });
