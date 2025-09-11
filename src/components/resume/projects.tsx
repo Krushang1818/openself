@@ -17,19 +17,22 @@ export function Projects({ projects, className }: ProjectsProps) {
       <h2 className="text-xl font-bold" id="projects-section">
         Projects
       </h2>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="space-y-4" role="feed" aria-labelledby="projects-section">
         {projects.map((project, idx) => {
           return (
-            <div
-              key={idx}
-              className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-semibold text-neutral-900">
+            <article key={idx} role="article">
+              <div className="flex items-start justify-between mb-2">
+                <h3
+                  className="font-semibold leading-none"
+                  id={`project-${project.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                >
                   {project.name}
                 </h3>
-                <div className="flex gap-2">
-                  {project.deployedUrl && (
+
+                <div className="flex gap-4">
+                  {true && (
                     <a
                       href={project.deployedUrl}
                       target="_blank"
@@ -39,7 +42,7 @@ export function Projects({ projects, className }: ProjectsProps) {
                       <ExternalLinkIcon className="size-4" />
                     </a>
                   )}
-                  {project.publicCodeUrl && (
+                  {true && (
                     <a
                       href={project.publicCodeUrl}
                       target="_blank"
@@ -52,7 +55,7 @@ export function Projects({ projects, className }: ProjectsProps) {
               </div>
 
               {project.description && (
-                <p className="text-neutral-700 mb-4 leading-relaxed">
+                <p className="text-sm text-neutral-500 mb-2">
                   {project.description}
                 </p>
               )}
@@ -69,7 +72,7 @@ export function Projects({ projects, className }: ProjectsProps) {
                   ))}
                 </div>
               )}
-            </div>
+            </article>
           );
         })}
       </div>

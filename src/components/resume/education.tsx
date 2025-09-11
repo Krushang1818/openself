@@ -18,23 +18,21 @@ function EducationItem({
   }
 
   return (
-    <div>
-      <div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-base">
-          <h3
-            className="font-semibold leading-none"
-            id={`education-${school.toLowerCase().replace(/\s+/g, "-")}`}
-          >
-            {school}
-          </h3>
-          <div
-            className="text-sm tabular-nums text-neutral-500"
-            aria-label={`Period: ${getYear(start)} to ${
-              end ? ` ${getYear(end)}` : "Present"
-            }`}
-          >
-            {getYear(start)} - {end ? `${getYear(end)}` : "Present"}
-          </div>
+    <>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-base">
+        <h3
+          className="font-semibold leading-none"
+          id={`education-${school.toLowerCase().replace(/\s+/g, "-")}`}
+        >
+          {school}
+        </h3>
+        <div
+          className="text-sm tabular-nums text-neutral-500"
+          aria-label={`Period: ${getYear(start)} to ${
+            end ? ` ${getYear(end)}` : "Present"
+          }`}
+        >
+          {getYear(start)} - {end ? `${getYear(end)}` : "Present"}
         </div>
       </div>
       <div
@@ -45,7 +43,7 @@ function EducationItem({
       >
         {degree}
       </div>
-    </div>
+    </>
   );
 }
 

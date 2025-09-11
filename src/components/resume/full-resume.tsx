@@ -6,6 +6,7 @@ import { Skills } from "./skills";
 import { Summary } from "./summary";
 import { WorkExperience } from "./work-experience";
 import { ResumeDataSchema, type ResumeDataSchemaType } from "@/lib/resume";
+import { Projects } from "./projects";
 
 export const FullResume = ({
   resume,
@@ -21,12 +22,14 @@ export const FullResume = ({
       className="w-full space-y-8 font-mono bg-white print:space-y-4 px-4 py-3 rounded-2xl"
       aria-label="Resume Content"
     >
-      <Header header={resume?.header} picture={resume.picture} />
+      <Header header={resume.header} picture={resume.picture} />
 
       <div className="flex flex-col gap-6">
-        <Summary summary={resume?.summary} />
+        <Summary summary={resume.summary} />
 
-        <WorkExperience work={resume?.workExperience} />
+        <WorkExperience work={resume.workExperience} />
+
+        <Projects projects={resume.projects} />
 
         <Education educations={resume.education} />
 
