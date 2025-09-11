@@ -1,6 +1,13 @@
 "use client";
 
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Link,
+} from "@react-pdf/renderer";
 import { ResumeDataSchemaType, getShortMonth, getYear } from "@/lib/resume";
 
 // Register fonts if needed
@@ -28,6 +35,18 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 10,
     color: "#9ca3af",
+  },
+  socialLinks: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: 4,
+    marginTop: 6,
+  },
+  socialLink: {
+    fontSize: 9,
+    color: "#3b82f6",
+    textDecoration: "underline",
   },
   section: {
     marginBottom: 15,
@@ -87,8 +106,8 @@ const styles = StyleSheet.create({
     color: "#374151",
   },
   separator: {
-    fontSize: 11,
-    color: "#374151",
+    fontSize: 9,
+    color: "#6b7280",
   },
   date: {
     fontSize: 10,
@@ -102,15 +121,24 @@ const styles = StyleSheet.create({
   educationItem: {
     marginBottom: 8,
   },
-  degree: {
-    fontSize: 13,
-    fontWeight: "bold",
+  educationHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 2,
   },
   school: {
+    fontSize: 13,
+    fontWeight: "bold",
+  },
+  educationDate: {
+    fontSize: 10,
+    color: "#6b7280",
+    textAlign: "right",
+  },
+  degree: {
     fontSize: 12,
     color: "#374151",
-    marginBottom: 2,
   },
   skills: {
     flexDirection: "row",
@@ -152,6 +180,45 @@ interface ResumePDFProps {
 }
 
 export function ResumePDF({ resume }: ResumePDFProps) {
+  // Helper function to format social URLs
+  const formatSocialUrl = (
+    url: string | undefined,
+    platform: "github" | "twitter" | "linkedin",
+  ) => {
+    if (!url) return undefined;
+
+    const cleanUrl = url.trim();
+    if (cleanUrl.startsWith("http")) return cleanUrl;
+
+    // Handle twitter.com and x.com variations
+    if (
+      platform === "twitter" &&
+      (cleanUrl.startsWith("twitter.com") || cleanUrl.startsWith("x.com"))
+    ) {
+      return `https://${cleanUrl}`;
+    }
+
+    const platformUrls = {
+      github: "github.com",
+      twitter: "x.com",
+      linkedin: "linkedin.com/in",
+    } as const;
+
+    return `https://${platformUrls[platform]}/${cleanUrl}`;
+  };
+
+  // Format social links
+  const socialLinks = {
+    website: resume.header.contacts.website?.startsWith("http")
+      ? resume.header.contacts.website
+      : resume.header.contacts.website
+      ? `https://${resume.header.contacts.website}`
+      : undefined,
+    github: formatSocialUrl(resume.header.contacts.github, "github"),
+    twitter: formatSocialUrl(resume.header.contacts.twitter, "twitter"),
+    linkedin: formatSocialUrl(resume.header.contacts.linkedin, "linkedin"),
+  };
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -163,6 +230,81 @@ export function ResumePDF({ resume }: ResumePDFProps) {
           )}
           {resume.header.location && (
             <Text style={styles.location}>{resume.header.location}</Text>
+          )}
+
+          {/* Social Links */}
+          {(socialLinks.website ||
+            resume.header.contacts.email ||
+            resume.header.contacts.phone ||
+            socialLinks.github ||
+            socialLinks.twitter ||
+            socialLinks.linkedin) && (
+            <View style={styles.socialLinks}>
+              {socialLinks.website && (
+                <Link src={socialLinks.website} style={styles.socialLink}>
+                  Website
+                </Link>
+              )}
+              {socialLinks.website &&
+                (resume.header.contacts.email ||
+                  resume.header.contacts.phone ||
+                  socialLinks.github ||
+                  socialLinks.twitter ||
+                  socialLinks.linkedin) && (
+                  <Text style={styles.separator}>•</Text>
+                )}
+              {resume.header.contacts.email && (
+                <Link
+                  src={`mailto:${resume.header.contacts.email}`}
+                  style={styles.socialLink}
+                >
+                  Email
+                </Link>
+              )}
+              {resume.header.contacts.email &&
+                (resume.header.contacts.phone ||
+                  socialLinks.github ||
+                  socialLinks.twitter ||
+                  socialLinks.linkedin) && (
+                  <Text style={styles.separator}>•</Text>
+                )}
+              {resume.header.contacts.phone && (
+                <Link
+                  src={`tel:${resume.header.contacts.phone}`}
+                  style={styles.socialLink}
+                >
+                  Phone
+                </Link>
+              )}
+              {resume.header.contacts.phone &&
+                (socialLinks.github ||
+                  socialLinks.twitter ||
+                  socialLinks.linkedin) && (
+                  <Text style={styles.separator}>•</Text>
+                )}
+              {socialLinks.github && (
+                <Link src={socialLinks.github} style={styles.socialLink}>
+                  GitHub
+                </Link>
+              )}
+              {socialLinks.github &&
+                (socialLinks.twitter || socialLinks.linkedin) && (
+                  <Text style={styles.separator}>•</Text>
+                )}
+              {socialLinks.twitter && (
+                <Link src={socialLinks.twitter} style={styles.socialLink}>
+                  X
+                </Link>
+              )}
+              {socialLinks.twitter && socialLinks.linkedin && (
+                <Text style={styles.separator}>•</Text>
+              )}
+              {socialLinks.linkedin && (
+                <Link src={socialLinks.linkedin} style={styles.socialLink}>
+                  LinkedIn
+                </Link>
+              )}
+            </View>
           )}
         </View>
 
@@ -268,11 +410,14 @@ export function ResumePDF({ resume }: ResumePDFProps) {
             {resume.education.map(
               (edu: ResumeDataSchemaType["education"][0], index: number) => (
                 <View key={index} style={styles.educationItem}>
+                  <View style={styles.educationHeader}>
+                    <Text style={styles.school}>{edu.school}</Text>
+                    <Text style={styles.educationDate}>
+                      {getYear(edu.start)} -{" "}
+                      {edu.end ? getYear(edu.end) : "Present"}
+                    </Text>
+                  </View>
                   <Text style={styles.degree}>{edu.degree}</Text>
-                  <Text style={styles.school}>{edu.school}</Text>
-                  <Text style={styles.date}>
-                    {edu.start} - {edu.end ? edu.end : "Present"}
-                  </Text>
                 </View>
               ),
             )}
