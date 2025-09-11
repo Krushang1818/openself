@@ -27,11 +27,11 @@ importers:
         specifier: ^4.1.12
         version: 4.1.13
       '@tambo-ai/react':
-        specifier: ^0.47.0
-        version: 0.47.0(@types/node@24.3.1)(@types/react-dom@19.1.9(@types/react@19.1.12))(@types/react@19.1.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
+        specifier: ^0.50.0
+        version: 0.50.0(@types/node@24.3.1)(@types/react-dom@19.1.9(@types/react@19.1.12))(@types/react@19.1.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
       '@tambo-ai/typescript-sdk':
-        specifier: ^0.69.0
-        version: 0.69.0
+        specifier: ^0.70.0
+        version: 0.70.0
       ai:
         specifier: ^5.0.40
         version: 5.0.40(zod@3.25.76)
@@ -1323,8 +1323,8 @@ packages:
   '@tailwindcss/postcss@4.1.13':
     resolution: {integrity: sha512-HLgx6YSFKJT7rJqh9oJs/TkBFhxuMOfUKSBEPYwV+t78POOBsdQ7crhZLzwcH3T0UyUuOzU/GK5pk5eKr3wCiQ==}
 
-  '@tambo-ai/react@0.47.0':
-    resolution: {integrity: sha512-2buEw8NXDNFKWqvUc6KIqauuMSeDeg95TJodUY+IvTBoJmKzl9gTCseFKRlWodZHg63QVzNhgDuJ8H+OTvX3Iw==}
+  '@tambo-ai/react@0.50.0':
+    resolution: {integrity: sha512-90VkE7XYVkldVxlnWlb7UfLo6wTmAFsbtTLn9O+MyGXNoPKt4svDQLTZYBHP1JOk+BR92DzscTin2zAGUUwzNg==}
     engines: {node: '>=22', npm: '>=11'}
     peerDependencies:
       '@types/react': ^18.0.0 || ^19.0.0
@@ -1332,8 +1332,8 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@tambo-ai/typescript-sdk@0.69.0':
-    resolution: {integrity: sha512-ebl1SPPhv6dFZmIxQjRDwN2kraX5Tbn07vwyWIhUI+KwSNWFNu2NVNZ56VY2JYvPholyZh8OzpEN1WhSkJx1/Q==}
+  '@tambo-ai/typescript-sdk@0.70.0':
+    resolution: {integrity: sha512-xO/rlU6OI5NQe0xILa7GP/dELDyYw0Prrncy83XCU90N8oMPP1gjJ07VzVhT2u/u903lQlWiF3SnrPffLeTDCw==}
 
   '@tanstack/query-core@5.87.4':
     resolution: {integrity: sha512-uNsg6zMxraEPDVO2Bn+F3/ctHi+Zsk+MMpcN8h6P7ozqD088F6mFY5TfGM7zuyIrL7HKpDyu6QHfLWiDxh3cuw==}
@@ -6014,10 +6014,10 @@ snapshots:
       postcss: 8.5.6
       tailwindcss: 4.1.13
 
-  '@tambo-ai/react@0.47.0(@types/node@24.3.1)(@types/react-dom@19.1.9(@types/react@19.1.12))(@types/react@19.1.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)':
+  '@tambo-ai/react@0.50.0(@types/node@24.3.1)(@types/react-dom@19.1.9(@types/react@19.1.12))(@types/react@19.1.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)':
     dependencies:
       '@modelcontextprotocol/sdk': 1.17.5
-      '@tambo-ai/typescript-sdk': 0.69.0
+      '@tambo-ai/typescript-sdk': 0.70.0
       '@tanstack/react-query': 5.87.4(react@19.1.1)
       '@types/react': 19.1.12
       '@types/react-dom': 19.1.9(@types/react@19.1.12)
@@ -6038,7 +6038,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tambo-ai/typescript-sdk@0.69.0':
+  '@tambo-ai/typescript-sdk@0.70.0':
     dependencies:
       abort-controller: 3.0.0
       agentkeepalive: 4.6.0
@@ -6948,7 +6948,7 @@ snapshots:
     dependencies:
       cipher-base: 1.0.6
       inherits: 2.0.4
-      ripemd160: 2.0.2
+      ripemd160: 2.0.1
       sha.js: 2.4.12
 
   create-hash@1.2.0:
