@@ -1,7 +1,7 @@
 "use client";
 
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import { ResumeDataSchemaType } from "@/lib/resume";
+import { ResumeDataSchemaType, getShortMonth, getYear } from "@/lib/resume";
 
 // Register fonts if needed
 // Font.register({
@@ -43,15 +43,52 @@ const styles = StyleSheet.create({
   experienceItem: {
     marginBottom: 10,
   },
+  experienceHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 4,
+  },
+  titleLocationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    flex: 1,
+  },
   jobTitle: {
     fontSize: 14,
     fontWeight: "bold",
-    marginBottom: 2,
+  },
+  locationBadge: {
+    fontSize: 10,
+    backgroundColor: "#f3f4f6",
+    padding: "2 4",
+    borderRadius: 3,
+    color: "#374151",
+  },
+  formattedDate: {
+    fontSize: 10,
+    color: "#6b7280",
+    textAlign: "right",
+  },
+  companyContractContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    marginBottom: 3,
   },
   company: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#374151",
-    marginBottom: 2,
+    textTransform: "capitalize",
+  },
+  contract: {
+    fontSize: 11,
+    color: "#374151",
+  },
+  separator: {
+    fontSize: 11,
+    color: "#374151",
   },
   date: {
     fontSize: 10,
@@ -145,20 +182,47 @@ export function ResumePDF({ resume }: ResumePDFProps) {
               (
                 exp: ResumeDataSchemaType["workExperience"][0],
                 index: number,
-              ) => (
-                <View key={index} style={styles.experienceItem}>
-                  <Text style={styles.jobTitle}>{exp.title}</Text>
-                  <Text style={styles.company}>{exp.company}</Text>
-                  <Text style={styles.date}>
-                    {exp.start} - {exp.end ? exp.end : "Present"}
-                    {exp.location && ` • ${exp.location}`}
-                    {exp.contract && ` • ${exp.contract}`}
-                  </Text>
-                  {exp.description && (
-                    <Text style={styles.description}>{exp.description}</Text>
-                  )}
-                </View>
-              ),
+              ) => {
+                const formattedDate = `${getShortMonth(exp.start)} ${getYear(
+                  exp.start,
+                )} - ${
+                  exp.end
+                    ? `${getShortMonth(exp.end)} ${getYear(exp.end)}`
+                    : "Present"
+                }`;
+
+                return (
+                  <View key={index} style={styles.experienceItem}>
+                    <View style={styles.experienceHeader}>
+                      <View style={styles.titleLocationContainer}>
+                        <Text style={styles.jobTitle}>{exp.title}</Text>
+                        {exp.location && (
+                          <Text style={styles.locationBadge}>
+                            {exp.location}
+                          </Text>
+                        )}
+                      </View>
+                      <Text style={styles.formattedDate}>{formattedDate}</Text>
+                    </View>
+
+                    <View style={styles.companyContractContainer}>
+                      <Text style={styles.company}>
+                        {exp.company.toLowerCase()}
+                      </Text>
+                      {exp.company && exp.contract && (
+                        <Text style={styles.separator}>•</Text>
+                      )}
+                      {exp.contract && (
+                        <Text style={styles.contract}>{exp.contract}</Text>
+                      )}
+                    </View>
+
+                    {exp.description && (
+                      <Text style={styles.description}>{exp.description}</Text>
+                    )}
+                  </View>
+                );
+              },
             )}
           </View>
         )}
