@@ -8,8 +8,6 @@
  * Read more about Tambo at https://tambo.co/docs
  */
 
-import { Graph, graphSchema } from "@/components/tambo/graph";
-import { DataCard, dataCardSchema } from "@/components/ui/data-card";
 import { TamboTool } from "@tambo-ai/react";
 import type { TamboComponent } from "@tambo-ai/react";
 
@@ -33,19 +31,5 @@ export const tools: TamboTool[] = [
  * can be controlled by AI to dynamically render UI elements based on user interactions.
  */
 export const components: TamboComponent[] = [
-  {
-    name: "Graph",
-    description:
-      "A component that renders various types of charts (bar, line, pie) using Recharts. Supports customizable data visualization with labels, datasets, and styling options.",
-    component: Graph,
-    propsSchema: graphSchema,
-  },
-  {
-    name: "DataCard",
-    description:
-      "A component that displays options as clickable cards with links and summaries with the ability to select multiple items.",
-    component: DataCard,
-    propsSchema: dataCardSchema,
-  },
   // Add more components here
 ];
