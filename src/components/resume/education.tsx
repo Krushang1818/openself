@@ -98,6 +98,6 @@ export const InteractableEducation = withInteractable(Education, {
   componentName: "Education",
   description: "Education section with a list of educational experiences",
   propsSchema: z.object({
-    education: EducationSectionSchema,
+    educations: EducationSectionSchema,
   }),
 });
