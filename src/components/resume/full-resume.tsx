@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { withInteractable } from "@tambo-ai/react";
 import { Education } from "./education";
 import { Header } from "./header";
@@ -42,5 +43,7 @@ export const InteractableFullResume = withInteractable(FullResume, {
   componentName: "Resume",
   description:
     "Resume with header, summary, work experience, education, and skills",
-  propsSchema: ResumeDataSchema,
+  propsSchema: z.object({
+    resume: ResumeDataSchema,
+  }),
 });
