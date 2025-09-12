@@ -29,7 +29,7 @@ export default function Home() {
           </h1>
 
           <p className="text-base text-neutral-600 mb-[30px] text-center md:text-left">
-            Create polished resumes using natural language effortlessly.
+            Create polished resumes effortlessly using natural language.
           </p>
 
           <div className="relative flex flex-col items-center w-full md:w-fit">

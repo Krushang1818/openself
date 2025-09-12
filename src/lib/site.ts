@@ -15,7 +15,7 @@ export const getSiteUrl = () => {
 export const SITE_INFO = {
   title: "OpenSelf",
   description:
-    "Cursor for Resumes - AI-powered resume builder with PDF generation and interactive chat interface",
+    "Cursor for Resumes - Create polished resumes effortlessly using natural language.",
   url: getSiteUrl(),
   openGraphImage: "/og.png",
   twitterImage: "/og.png",
