@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
@@ -36,7 +36,14 @@ export function Skills({ skills, className }: SkillsProps) {
     }
   }, [skills, debouncedSave]);
 
-  if (skills.length === 0) {
+  // Filter out empty strings
+  const validSkills = useMemo(() => {
+    if (!skills) return [];
+
+    return skills?.filter((skill) => skill.length > 0) ?? [];
+  }, [skills]);
+
+  if (validSkills.length === 0) {
     return null;
   }
 

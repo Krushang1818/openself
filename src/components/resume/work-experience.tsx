@@ -37,6 +37,8 @@ export function WorkExperience({ work, className }: WorkExperienceProps) {
 
   // Filter out invalid work experiences and pre-format dates
   const validWork = useMemo(() => {
+    if (!work) return [];
+
     return work
       .filter(
         (item) =>

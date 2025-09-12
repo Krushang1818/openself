@@ -4,6 +4,7 @@ import { useResumeStore } from "@/store/resume-store";
 import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
 
+import { DUMMY_RESUME_DATA } from "@/lib/dummy-resume";
 import { components, tools } from "@/lib/tambo";
 
 import { FullResume, ResumeActionBar } from "@/components/resume";
@@ -13,12 +14,14 @@ import { MessageThreadFull } from "@/components/tambo/message-thread-full";
 function ResumePreview() {
   const { resumeData } = useResumeStore();
 
+  const resume = resumeData ?? DUMMY_RESUME_DATA;
+
   return (
     <div className="flex-1 overflow-auto">
-      {resumeData && <ResumeActionBar resume={resumeData} />}
+      <ResumeActionBar resume={resume} />
 
       <div className="p-4">
-        <FullResume resume={resumeData} />
+        <FullResume resume={resume} />
       </div>
     </div>
   );

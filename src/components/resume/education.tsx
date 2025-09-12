@@ -82,11 +82,12 @@ export function Education({
     }
   }, [educations, debouncedSave]);
 
-  // Filter out invalid education entries
-  const validEducations = useMemo(
-    () => educations.filter((edu) => edu.school && edu.degree && edu.start),
-    [educations],
-  );
+  // Filter out invalid education
+  const validEducations = useMemo(() => {
+    if (!educations) return [];
+
+    return educations.filter((edu) => edu.school && edu.degree && edu.start);
+  }, [educations]);
 
   if (validEducations.length === 0) {
     return null;

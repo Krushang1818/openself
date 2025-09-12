@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
@@ -31,7 +31,14 @@ export function Projects({ projects, className }: ProjectsProps) {
     }
   }, [projects, debouncedSave]);
 
-  if (projects.length === 0) {
+  // Filter out invalid projects
+  const validProjects = useMemo(() => {
+    if (!projects) return [];
+
+    return projects.filter((project) => project.name && project.description);
+  }, [projects]);
+
+  if (validProjects.length === 0) {
     return null;
   }
 
