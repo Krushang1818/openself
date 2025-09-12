@@ -2,7 +2,7 @@
 
 An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React PDF, and Tambo AI.
 
-[<img src="public/og.png" alt="Resume Builder" style="border: 2px solid #e5e7eb; border-radius: 8px;">](https://openself.vercel.app/)
+[![Resume Builder](public/og.png)](https://openself.vercel.app/)
 
 ## ✨ Features
 
