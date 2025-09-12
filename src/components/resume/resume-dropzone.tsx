@@ -86,7 +86,7 @@ export function ResumeDropzone({
   const hasFile = Boolean(file.name);
 
   return (
-    <div className="relative mx-2.5">
+    <div className="relative">
       {hasFile && (
         <button
           onClick={handleReset}

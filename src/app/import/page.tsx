@@ -29,7 +29,7 @@ function SectionWithHeadingAndCreateButton({
 function OrDivider() {
   return (
     <div
-      className="mx-[-2.5rem] flex items-center pb-6 pt-8"
+      className="-mx-4 md:-mx-10 flex items-center pb-6 pt-8"
       aria-hidden="true"
     >
       <div className="flex-grow border-t" />
@@ -52,7 +52,7 @@ export default function ImportPage() {
 
   return (
     <main className="flex flex-col items-center justify-center px-4 py-14 flex-1">
-      <div className="mx-auto w-full max-w-3xl rounded-md border px-10 py-10 text-center shadow-md">
+      <div className="mx-auto w-full max-w-3xl rounded-md border px-4 md:px-10 py-10 text-center shadow-md">
         {!resumeData ? (
           <>
             <h1 className="text-lg font-semibold text-neutral-900">
