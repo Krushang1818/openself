@@ -88,21 +88,20 @@ An AI-powered resume builder that helps you create professional resumes with int
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── chat/              # Chat interface page
-│   ├── layout.tsx         # Root layout with providers
-│   └── page.tsx           # Landing page
-├── components/            # React components
-│   ├── resume/           # Resume-specific components
-│   ├── tambo/            # AI chat components
-│   ├── ui/               # Reusable UI components
-│   └── resume-action-bar.tsx # PDF download component
-├── lib/                   # Utilities and configurations
-│   ├── tambo.ts          # Tambo AI configuration
-│   └── resume.ts         # Resume data schemas
-├── store/                 # State management
-│   └── resume-store.ts   # Resume data store
-└── styles/                # Global styles
+├── app/                      # Next.js App Router
+│   ├── chat/                 # Chat interface page
+│   ├── layout.tsx            # Root layout with providers
+│   └── page.tsx              # Landing page
+├── components/               # React components
+│   ├── resume/               # Resume-specific components
+│   ├── tambo/                # AI chat components
+│   └── ui/                   # Reusable UI components
+├── lib/                      # Utilities and configurations
+│   ├── tambo.ts              # Tambo AI configuration
+│   └── resume.ts             # Resume data schemas
+├── store/                    # State management
+│   └── resume-store.ts       # Resume data store
+└── styles/                   # Global styles
 ```
 
 ## 🎨 Customization
@@ -138,17 +137,16 @@ src/
    }
    ```
 
-4. **Register with Tambo** in `src/lib/tambo.ts`:
+4. **Register Interactable with Tambo** in `src/lib/tambo.ts`:
    ```tsx
-   export const components: TamboComponent[] = [
-     // ... existing components
-     {
-       name: "CustomSection",
-       description: "Custom resume section",
-       component: CustomSection,
-       propsSchema: CustomSectionSchema,
-     },
-   ];
+   export const InteractableNote = withInteractable(CustomSection, {
+      componentName: "CustomSection",
+      description:
+         "A custom section that can display custom fields",
+      propsSchema: z.object({
+         name: z.string(),
+         // ... rest of the fields
+   });
    ```
 
 ### Styling
@@ -158,27 +156,6 @@ The app uses Tailwind CSS v4 with custom design tokens. Modify styles in:
 - `src/app/globals.css` - Global styles
 - `tailwind.config.ts` - Tailwind configuration
 - Component-specific styles using Tailwind classes
-
-## 🔧 Development
-
-### Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint issues
-npm run check-types  # Type checking
-```
-
-### Environment Variables
-
-| Variable                       | Description           | Required                    |
-| ------------------------------ | --------------------- | --------------------------- |
-| `GOOGLE_GENERATIVE_AI_API_KEY` | Your Gemini API key   | Yes                         |
-| `NEXT_PUBLIC_TAMBO_API_KEY`    | Your Tambo AI API key | Yes                         |
-| `NEXT_PUBLIC_TAMBO_URL`        | Tambo API URL         | No (defaults to production) |
 
 ## 🤝 Contributing
 
