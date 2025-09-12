@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { Navbar } from "@/components/navbar";
 
-import "./globals.css";
+import "../styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
