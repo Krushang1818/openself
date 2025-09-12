@@ -8,10 +8,23 @@ import { TamboMcpProvider } from "@tambo-ai/react/mcp";
 import { ResumeActionBar, FullResume } from "@/components/resume";
 import { useResumeStore } from "@/store/resume-store";
 
+function ResumePreview() {
+  const { resumeData } = useResumeStore();
+
+  return (
+    <div className="flex-1 overflow-auto">
+      {resumeData && <ResumeActionBar resume={resumeData} />}
+
+      <div className="p-4">
+        <FullResume resume={resumeData} />
+      </div>
+    </div>
+  );
+}
+
 export default function ChatPage() {
   // Load MCP server configurations
   const mcpServers = useMcpServers();
-  const { resumeData } = useResumeStore();
 
   return (
     <TamboProvider
@@ -33,14 +46,8 @@ export default function ChatPage() {
             </div>
           </div>
 
-          {/* Resume */}
-          <div className="flex-1 overflow-auto">
-            {resumeData && <ResumeActionBar resume={resumeData} />}
-
-            <div className="p-4">
-              <FullResume resume={resumeData} />
-            </div>
-          </div>
+          {/* Resume Preview */}
+          <ResumePreview />
         </main>
       </TamboMcpProvider>
     </TamboProvider>

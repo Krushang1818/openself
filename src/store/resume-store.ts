@@ -6,7 +6,7 @@ interface ResumeStore {
   resumeData: ResumeDataSchemaType | null;
   isLoading: boolean;
   error: string | null;
-  setResumeData: (data: ResumeDataSchemaType) => void;
+  setResumeData: (data: Partial<ResumeDataSchemaType>) => void;
   clearResumeData: () => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
@@ -18,7 +18,11 @@ export const useResumeStore = create<ResumeStore>()(
       resumeData: null,
       isLoading: false,
       error: null,
-      setResumeData: (data) => set({ resumeData: data, error: null }),
+      setResumeData: (data) =>
+        set((state) => ({
+          resumeData: { ...state.resumeData, ...data } as ResumeDataSchemaType,
+          error: null,
+        })),
       clearResumeData: () => set({ resumeData: null, error: null }),
       setLoading: (loading) => set({ isLoading: loading }),
       setError: (error) => set({ error }),

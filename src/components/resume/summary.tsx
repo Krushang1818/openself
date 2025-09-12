@@ -2,6 +2,9 @@ import { z } from "zod";
 import { ResumeDataSchemaType, SummarySectionSchema } from "@/lib/resume";
 import { Section } from "../ui/section";
 import { withInteractable } from "@tambo-ai/react";
+import { useEffect } from "react";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 interface SummaryProps {
   summary: ResumeDataSchemaType["summary"];
@@ -13,6 +16,21 @@ interface SummaryProps {
  * Displays a summary of professional experience and goals
  */
 export function Summary({ summary, className }: SummaryProps) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save summary data when props change
+  useEffect(() => {
+    if (summary) {
+      debouncedSave({ summary });
+    }
+  }, [summary, debouncedSave]);
+
   if (!summary) {
     return null;
   }

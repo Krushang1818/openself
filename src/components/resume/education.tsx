@@ -6,7 +6,9 @@ import {
   getYear,
 } from "@/lib/resume";
 import { withInteractable } from "@tambo-ai/react";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 /**
  * Individual education card component
@@ -62,6 +64,21 @@ export function Education({
 }: {
   educations: ResumeDataSchemaType["education"];
 }) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save education data when props change
+  useEffect(() => {
+    if (educations && educations.length > 0) {
+      debouncedSave({ education: educations });
+    }
+  }, [educations, debouncedSave]);
+
   // Filter out invalid education entries
   const validEducations = useMemo(
     () => educations.filter((edu) => edu.school && edu.degree && edu.start),

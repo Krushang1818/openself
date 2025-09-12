@@ -4,6 +4,9 @@ import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
 import { withInteractable } from "@tambo-ai/react";
 import { ResumeDataSchemaType, SkillsSectionSchema } from "@/lib/resume";
+import { useEffect } from "react";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 interface SkillsProps {
   skills: ResumeDataSchemaType["skills"];
@@ -15,6 +18,21 @@ interface SkillsProps {
  * Displays a list of professional skills as badges
  */
 export function Skills({ skills, className }: SkillsProps) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save skills data when props change
+  useEffect(() => {
+    if (skills && skills.length > 0) {
+      debouncedSave({ skills });
+    }
+  }, [skills, debouncedSave]);
+
   if (skills.length === 0) {
     return null;
   }

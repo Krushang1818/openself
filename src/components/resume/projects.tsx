@@ -3,6 +3,9 @@ import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
 import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { withInteractable } from "@tambo-ai/react";
+import { useEffect } from "react";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 interface ProjectsProps {
   projects: ResumeDataSchemaType["projects"];
@@ -10,6 +13,21 @@ interface ProjectsProps {
 }
 
 export function Projects({ projects, className }: ProjectsProps) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save projects data when props change
+  useEffect(() => {
+    if (projects && projects.length > 0) {
+      debouncedSave({ projects });
+    }
+  }, [projects, debouncedSave]);
+
   if (projects.length === 0) {
     return null;
   }

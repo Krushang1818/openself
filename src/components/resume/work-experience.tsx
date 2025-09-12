@@ -6,8 +6,10 @@ import {
   getShortMonth,
   getYear,
 } from "@/lib/resume";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { withInteractable } from "@tambo-ai/react";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 interface WorkExperienceProps {
   work: ResumeDataSchemaType["workExperience"];
@@ -15,6 +17,21 @@ interface WorkExperienceProps {
 }
 
 export function WorkExperience({ work, className }: WorkExperienceProps) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save work experience data when props change
+  useEffect(() => {
+    if (work && work.length > 0) {
+      debouncedSave({ workExperience: work });
+    }
+  }, [work, debouncedSave]);
+
   // Filter out invalid work experiences and pre-format dates
   const validWork = useMemo(() => {
     return work

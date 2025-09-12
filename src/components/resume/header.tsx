@@ -3,10 +3,12 @@ import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HeaderSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { Icons } from "../icons";
 import { withInteractable } from "@tambo-ai/react";
 import { cn } from "@/lib/utils";
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
 
 interface SocialButtonProps {
   href: string;
@@ -43,6 +45,24 @@ interface HeaderProps {
  * Header component displaying personal information and contact details
  */
 export function Header({ header, picture, className }: HeaderProps) {
+  const { setResumeData } = useResumeStore();
+
+  const debouncedSave = useDebouncedCallback(
+    (data) => setResumeData(data),
+    [setResumeData],
+    300,
+  );
+
+  // Save header and picture data when props change
+  useEffect(() => {
+    if (header || picture) {
+      debouncedSave({
+        header,
+        ...(picture && { picture }),
+      });
+    }
+  }, [header, picture, debouncedSave]);
+
   const prefixUrl = (stringToFix?: string) => {
     if (!stringToFix) return undefined;
     const url = stringToFix.trim();
