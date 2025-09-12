@@ -1,19 +1,22 @@
 "use client";
 
-import { McpConfigModal } from "@/components/tambo/mcp-config-modal";
-import {
-  Tooltip,
-  TooltipProvider,
-} from "@/components/tambo/suggestions-tooltip";
-import { cn } from "@/lib/utils";
+import * as React from "react";
+
 import {
   useIsTamboTokenUpdating,
   useTamboThread,
   useTamboThreadInput,
 } from "@tambo-ai/react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import { ArrowUp, Square } from "lucide-react";
-import * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+import { McpConfigModal } from "@/components/tambo/mcp-config-modal";
+import {
+  Tooltip,
+  TooltipProvider,
+} from "@/components/tambo/suggestions-tooltip";
 
 /**
  * CSS variants for the message input container

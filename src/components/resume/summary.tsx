@@ -1,10 +1,13 @@
-import { z } from "zod";
-import { ResumeDataSchemaType, SummarySectionSchema } from "@/lib/resume";
-import { Section } from "../ui/section";
-import { withInteractable } from "@tambo-ai/react";
 import { useEffect } from "react";
+
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
+import { z } from "zod";
+
+import { ResumeDataSchemaType, SummarySectionSchema } from "@/lib/resume";
+
+import { Section } from "../ui/section";
 
 interface SummaryProps {
   summary: ResumeDataSchemaType["summary"];

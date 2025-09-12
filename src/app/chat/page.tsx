@@ -1,12 +1,14 @@
 "use client";
 
-import { MessageThreadFull } from "@/components/tambo/message-thread-full";
-import { useMcpServers } from "@/components/tambo/mcp-config-modal";
-import { components, tools } from "@/lib/tambo";
+import { useResumeStore } from "@/store/resume-store";
 import { TamboProvider } from "@tambo-ai/react";
 import { TamboMcpProvider } from "@tambo-ai/react/mcp";
-import { ResumeActionBar, FullResume } from "@/components/resume";
-import { useResumeStore } from "@/store/resume-store";
+
+import { components, tools } from "@/lib/tambo";
+
+import { FullResume, ResumeActionBar } from "@/components/resume";
+import { useMcpServers } from "@/components/tambo/mcp-config-modal";
+import { MessageThreadFull } from "@/components/tambo/message-thread-full";
 
 function ResumePreview() {
   const { resumeData } = useResumeStore();

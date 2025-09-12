@@ -1,14 +1,18 @@
-import { z } from "zod";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { HeaderSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
-import { useMemo, useEffect } from "react";
-import { Icons } from "../icons";
-import { withInteractable } from "@tambo-ai/react";
-import { cn } from "@/lib/utils";
+import { useEffect, useMemo } from "react";
+
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
+import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { z } from "zod";
+
+import { HeaderSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
+import { cn } from "@/lib/utils";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+import { Icons } from "../icons";
 
 interface SocialButtonProps {
   href: string;

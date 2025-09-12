@@ -1,3 +1,5 @@
+import { type ResumeDataSchemaType } from "@/lib/resume";
+
 import {
   InteractableEducation,
   InteractableHeader,
@@ -6,7 +8,6 @@ import {
   InteractableSummary,
   InteractableWorkExperience,
 } from "@/components/resume";
-import { type ResumeDataSchemaType } from "@/lib/resume";
 
 export const FullResume = ({
   resume,

@@ -1,9 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import * as React from "react";
+
 import { type GenerationStage, useTambo } from "@tambo-ai/react";
 import { Loader2Icon } from "lucide-react";
-import * as React from "react";
+
+import { cn } from "@/lib/utils";
 
 /**
  * Represents the generation stage of a message

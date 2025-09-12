@@ -1,14 +1,18 @@
 import { useState } from "react";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
+import { useResumeStore } from "@/store/resume-store";
 import { FileLock2Icon, UploadIcon, XIcon } from "lucide-react";
 import { toast } from "sonner";
-import { Dropzone } from "@/components/ui/dropzone";
-import { Button } from "@/components/ui/button";
-import { generateResumeObject } from "@/lib/server/ai/generate-resume-object";
-import { useResumeStore } from "@/store/resume-store";
-import { parsePdf } from "@/lib/server/parse-pdf";
+
 import { ROUTES } from "@/lib/routes";
+import { generateResumeObject } from "@/lib/server/ai/generate-resume-object";
+import { parsePdf } from "@/lib/server/parse-pdf";
+
+import { Button } from "@/components/ui/button";
+import { Dropzone } from "@/components/ui/dropzone";
 
 const defaultFileState = {
   name: "",

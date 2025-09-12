@@ -1,9 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { useTambo } from "@tambo-ai/react";
 import * as React from "react";
 import { useEffect, useRef } from "react";
+
+import { useTambo } from "@tambo-ai/react";
+
+import { cn } from "@/lib/utils";
 
 /**
  * Props for the ScrollableMessageContainer component

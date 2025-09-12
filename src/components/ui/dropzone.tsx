@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { useDropzone, type DropzoneOptions } from "react-dropzone";
-import { cn } from "@/lib/utils";
+
 import { FileUp, Loader2 } from "lucide-react";
+import { type DropzoneOptions, useDropzone } from "react-dropzone";
+
+import { cn } from "@/lib/utils";
 
 interface DropzoneProps extends Omit<DropzoneOptions, "disabled"> {
   className?: string;

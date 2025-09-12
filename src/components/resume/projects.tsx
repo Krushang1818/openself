@@ -1,11 +1,14 @@
-import { z } from "zod";
-import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
-import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
-import { Section } from "@/components/ui/section";
-import { withInteractable } from "@tambo-ai/react";
 import { useEffect } from "react";
+
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
+import { ExternalLinkIcon, GitBranchIcon } from "lucide-react";
+import { z } from "zod";
+
+import { ProjectSectionSchema, ResumeDataSchemaType } from "@/lib/resume";
+
+import { Section } from "@/components/ui/section";
 
 interface ProjectsProps {
   projects: ResumeDataSchemaType["projects"];

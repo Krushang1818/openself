@@ -1,16 +1,19 @@
 "use client";
 
+import * as React from "react";
+import { useEffect, useRef } from "react";
+
+import type { Suggestion, TamboThread } from "@tambo-ai/react";
+import { useTambo, useTamboSuggestions } from "@tambo-ai/react";
+import { Loader2Icon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
 import { MessageGenerationStage } from "@/components/tambo/message-generation-stage";
 import {
   Tooltip,
   TooltipProvider,
 } from "@/components/tambo/suggestions-tooltip";
-import { cn } from "@/lib/utils";
-import type { Suggestion, TamboThread } from "@tambo-ai/react";
-import { useTambo, useTamboSuggestions } from "@tambo-ai/react";
-import { Loader2Icon } from "lucide-react";
-import * as React from "react";
-import { useEffect, useRef } from "react";
 
 /**
  * @typedef MessageSuggestionsContextValue

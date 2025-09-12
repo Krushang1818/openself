@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
+
 import Link from "next/link";
-import { ResumeDropzone } from "@/components/resume";
+
 import { useResumeStore } from "@/store/resume-store";
-import { Button } from "@/components/ui/button";
+
 import { ROUTES } from "@/lib/routes";
+
+import { Button } from "@/components/ui/button";
+
+import { ResumeDropzone } from "@/components/resume";
 
 function SectionWithHeadingAndCreateButton({
   heading,

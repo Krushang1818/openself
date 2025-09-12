@@ -1,4 +1,5 @@
 import type { Metadata } from "next/types";
+
 import { SITE_INFO } from "./site";
 
 export function createMetadata(override: Metadata): Metadata {

@@ -2,12 +2,13 @@
 
 import {
   Document,
+  Link,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Link,
 } from "@react-pdf/renderer";
+
 import { ResumeDataSchemaType, getShortMonth, getYear } from "@/lib/resume";
 
 // Register fonts if needed
@@ -212,8 +213,8 @@ export function ResumePDF({ resume }: ResumePDFProps) {
     website: resume.header.contacts.website?.startsWith("http")
       ? resume.header.contacts.website
       : resume.header.contacts.website
-      ? `https://${resume.header.contacts.website}`
-      : undefined,
+        ? `https://${resume.header.contacts.website}`
+        : undefined,
     github: formatSocialUrl(resume.header.contacts.github, "github"),
     twitter: formatSocialUrl(resume.header.contacts.twitter, "twitter"),
     linkedin: formatSocialUrl(resume.header.contacts.linkedin, "linkedin"),

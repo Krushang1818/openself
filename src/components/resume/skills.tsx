@@ -1,12 +1,15 @@
-import { z } from "zod";
-import { Badge } from "@/components/ui/badge";
-import { Section } from "@/components/ui/section";
-import { cn } from "@/lib/utils";
-import { withInteractable } from "@tambo-ai/react";
-import { ResumeDataSchemaType, SkillsSectionSchema } from "@/lib/resume";
 import { useEffect } from "react";
+
 import { useResumeStore } from "@/store/resume-store";
 import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
+import { z } from "zod";
+
+import { ResumeDataSchemaType, SkillsSectionSchema } from "@/lib/resume";
+import { cn } from "@/lib/utils";
+
+import { Badge } from "@/components/ui/badge";
+import { Section } from "@/components/ui/section";
 
 interface SkillsProps {
   skills: ResumeDataSchemaType["skills"];

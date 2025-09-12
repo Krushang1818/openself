@@ -1,11 +1,12 @@
-import { cn } from "@/lib/utils";
-import {
-  useCanvasDetection,
-  usePositioning,
-  useMergedRef,
-} from "@/lib/thread-hooks";
 import * as React from "react";
 import { useRef } from "react";
+
+import {
+  useCanvasDetection,
+  useMergedRef,
+  usePositioning,
+} from "@/lib/thread-hooks";
+import { cn } from "@/lib/utils";
 
 /**
  * Props for the ThreadContainer component

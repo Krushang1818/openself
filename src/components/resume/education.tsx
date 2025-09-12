@@ -1,14 +1,17 @@
+import { useEffect, useMemo } from "react";
+
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
 import { z } from "zod";
-import { Section } from "@/components/ui/section";
+
 import {
   EducationSectionSchema,
   ResumeDataSchemaType,
   getYear,
 } from "@/lib/resume";
-import { withInteractable } from "@tambo-ai/react";
-import { useMemo, useEffect } from "react";
-import { useResumeStore } from "@/store/resume-store";
-import { useDebouncedCallback } from "@react-hookz/web";
+
+import { Section } from "@/components/ui/section";
 
 /**
  * Individual education card component

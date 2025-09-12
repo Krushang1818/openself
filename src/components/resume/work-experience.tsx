@@ -1,15 +1,18 @@
+import { useEffect, useMemo } from "react";
+
+import { useResumeStore } from "@/store/resume-store";
+import { useDebouncedCallback } from "@react-hookz/web";
+import { withInteractable } from "@tambo-ai/react";
 import { z } from "zod";
-import { Section } from "@/components/ui/section";
+
 import {
   ResumeDataSchemaType,
   WorkExperienceSectionSchema,
   getShortMonth,
   getYear,
 } from "@/lib/resume";
-import { useMemo, useEffect } from "react";
-import { withInteractable } from "@tambo-ai/react";
-import { useResumeStore } from "@/store/resume-store";
-import { useDebouncedCallback } from "@react-hookz/web";
+
+import { Section } from "@/components/ui/section";
 
 interface WorkExperienceProps {
   work: ResumeDataSchemaType["workExperience"];

@@ -1,5 +1,12 @@
 "use client";
 
+import * as React from "react";
+
+import { type TamboThreadMessage, useTambo } from "@tambo-ai/react";
+import { type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
 import {
   Message,
   MessageContent,
@@ -7,10 +14,6 @@ import {
   ToolcallInfo,
   type messageVariants,
 } from "@/components/tambo/message";
-import { cn } from "@/lib/utils";
-import { type TamboThreadMessage, useTambo } from "@tambo-ai/react";
-import { type VariantProps } from "class-variance-authority";
-import * as React from "react";
 
 /**
  * @typedef ThreadContentContextValue

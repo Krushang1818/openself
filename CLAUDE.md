@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **This is an AI-powered resume builder application built with Tambo AI.** The app allows users to create professional resumes through interactive chat and generate PDF exports.
 
 ### Key Features:
+
 - AI-powered resume creation via chat interface
 - Real-time PDF generation with React PDF
 - Interactive resume components controlled by AI
@@ -66,6 +67,7 @@ This is a Next.js 15 app with Tambo AI integration for building generative UI/UX
 ### File Structure
 
 ```
+
 src/
 ├── app/ # Next.js App Router pages
 │ ├── chat/ # Chat interface with resume builder
@@ -98,6 +100,7 @@ src/
 ├── store/
 │ └── resume-store.ts # Resume data state management
 └── styles/ # Global styles and Tailwind config
+
 ```
 
 ## Key Tambo Hooks

@@ -1,17 +1,20 @@
 "use client";
 
-import { createMarkdownComponents } from "@/components/tambo/markdown-components";
-import { checkHasContent, getSafeContent } from "@/lib/thread-hooks";
-import { cn } from "@/lib/utils";
+import * as React from "react";
+import { useState } from "react";
+
 import type { TamboThreadMessage } from "@tambo-ai/react";
 import { useTambo } from "@tambo-ai/react";
 import type TamboAI from "@tambo-ai/typescript-sdk";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import stringify from "json-stringify-pretty-compact";
 import { Check, ChevronDown, ExternalLink, Loader2, X } from "lucide-react";
-import * as React from "react";
-import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+
+import { checkHasContent, getSafeContent } from "@/lib/thread-hooks";
+import { cn } from "@/lib/utils";
+
+import { createMarkdownComponents } from "@/components/tambo/markdown-components";
 
 /**
  * CSS variants for the message container

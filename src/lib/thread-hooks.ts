@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+
 import type { TamboThreadMessage } from "@tambo-ai/react";
 
 /**

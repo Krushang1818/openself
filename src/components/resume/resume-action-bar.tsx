@@ -1,10 +1,13 @@
 "use client";
 
-import { Download } from "lucide-react";
-import { ResumeDataSchemaType } from "@/lib/resume";
 import { pdf } from "@react-pdf/renderer";
-import { ResumePDF } from "./resume-pdf";
+import { Download } from "lucide-react";
+
+import { ResumeDataSchemaType } from "@/lib/resume";
+
 import { Button } from "@/components/ui/button";
+
+import { ResumePDF } from "./resume-pdf";
 
 interface ResumeActionBarProps {
   resume: ResumeDataSchemaType;

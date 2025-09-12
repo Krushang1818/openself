@@ -1,9 +1,11 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { ROUTES } from "@/lib/routes";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BorderBeam } from "@/components/ui/motion/border-beam";
-import { ROUTES } from "@/lib/routes";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (

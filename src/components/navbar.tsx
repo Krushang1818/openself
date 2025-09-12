@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { Icons } from "@/components/icons";
-import { Button } from "./ui/button";
-import { GITHUB_URL, TWITTER_URL } from "@/lib/social";
+
 import { ROUTES } from "@/lib/routes";
+import { GITHUB_URL, TWITTER_URL } from "@/lib/social";
+
+import { Icons } from "@/components/icons";
+
+import { Button } from "./ui/button";
 
 export function Navbar() {
   return (

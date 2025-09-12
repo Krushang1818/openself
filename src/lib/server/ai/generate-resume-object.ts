@@ -1,9 +1,10 @@
 "use server";
 
-import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
-import { ResumeDataSchema } from "../../resume";
+import { generateObject } from "ai";
 import dedent from "dedent";
+
+import { ResumeDataSchema } from "../../resume";
 
 export async function generateResumeObject(resumeText: string) {
   try {

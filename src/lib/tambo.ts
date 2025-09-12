@@ -7,7 +7,6 @@
  *
  * Read more about Tambo at https://tambo.co/docs
  */
-
 import { TamboTool } from "@tambo-ai/react";
 import type { TamboComponent } from "@tambo-ai/react";
 

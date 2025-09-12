@@ -1,6 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import React, { useMemo } from "react";
+
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   type TamboThread,
@@ -16,7 +17,8 @@ import {
   SearchIcon,
   Sparkles,
 } from "lucide-react";
-import React, { useMemo } from "react";
+
+import { cn } from "@/lib/utils";
 
 /**
  * Context for sharing thread history state and functions
