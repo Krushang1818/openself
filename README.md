@@ -1,6 +1,6 @@
 # Cursor for Resumes
 
-An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation. Built with Next.js, React PDF, and Tambo AI.
+An AI-powered resume builder that helps you create professional resumes with interactive chat interface and PDF generation.
 
 [![Resume Builder](public/og.png)](https://openself.vercel.app/)
 
@@ -152,7 +152,7 @@ src/
 
 The app uses Tailwind CSS v4 with custom design tokens. Modify styles in:
 
-- `src/app/globals.css` - Global styles
+- `src/styles/globals.css` - Global styles
 - `tailwind.config.ts` - Tailwind configuration
 - Component-specific styles using Tailwind classes
 
@@ -167,13 +167,6 @@ The app uses Tailwind CSS v4 with custom design tokens. Modify styles in:
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Tambo AI](https://tambo.co) - For the AI integration framework
-- [React PDF](https://react-pdf.org/) - For PDF generation
-- [Next.js](https://nextjs.org/) - For the React framework
-- [Tailwind CSS](https://tailwindcss.com/) - For styling
 
 ## 📞 Support
 
