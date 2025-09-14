@@ -34,7 +34,7 @@ export default function Home() {
 
           <div className="relative flex flex-col items-center w-full md:w-fit">
             <Button
-              className="relative group px-6 py-3 h-auto text-base"
+              className="relative group px-6 py-3 h-auto text-base overflow-hidden"
               asChild
             >
               <Link href={ROUTES.IMPORT}>
